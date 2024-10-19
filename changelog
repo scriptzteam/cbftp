@@ -1,0 +1,2021 @@
+r1266 2024-10-09 - fixed some crashes on connection close at transfer timeout
+r1265 2024-08-26 - don't count dupe files as failed in transfer job status
+                   decision
+                   > add section translation on the /file api endpoint
+r1264 2024-08-12 - api's now listen on localhost only by default. added setting
+                   in global options
+r1263 2024-06-07 - fixed a warning
+r1262 2024-06-07 - added url encoding support in the api
+r1261 2024-05-26 - fixed a crash during fxp source timeout
+                   fixed transfer jobs wrongly showing as failed
+r1260 2024-05-25 - fixed local transfer abort on site error
+                   added a fail state for transfer jobs without successful
+                   transfers
+r1259 2024-05-22 - added support for local fs symlinks
+r1258 2024-04-15 - added a check if file exists when executing external scripts
+r1257 2024-04-14 - fixed a missing include
+r1256 2024-04-14 - fixed external file viewing on wayland systems
+r1255 2024-04-14 - fixed a small error in the newly added resettransferjobs
+                   example script
+r1254 2024-04-14 - fixed a small error in the newly added undupe example script
+r1253 2024-04-14 - moved api python script helper functions into a separate
+                   module. added some example api scripts
+r1252 2024-04-09 - fixed some new transferjob crashes
+r1251 2024-04-09 - some performance improvements during mass transfer jobs
+r1250 2024-04-05 - added a freetext field for each site, shows in mainscreen
+                   with toggle in global options
+r1249 2024-04-05 - checking that the fix works is a good idea before committing
+r1248 2024-04-04 - fixed broken quick jump in the all transfer jobs screen
+r1247 2024-03-12 - added exact file size to file info screen
+r1246 2024-01-08 - fixed how local and in-memory transfers are displayed in
+                   transfers/transferstatus
+r1245 2023-12-18 - added filtering and quick jump for spread jobs and transfer
+                   jobs lists
+                   added hotkeys for spreadjobs/transferjobs from site status
+r1244 2023-07-27 - added a time stamp granularity setting in global options
+r1243 2023-07-06 - fix cygwin build, attempt 2
+r1242 2023-07-06 - fixed building on cygwin
+r1241 2023-04-03 - fixed spread job timeout per site flooding the event log when
+                   it occurs
+r1240 2023-03-21 - added unique/identical comparators when local-local browsing
+r1239 2023-03-04 - oops missed a file
+r1238 2023-03-04 - improved rest api verbosity on job starts
+                   added terminal bell support for rest api calls
+r1237 2022-12-26 - fixed 24hr site stats breaking after 25 days of uptime
+r1236 2022-12-12 - fixed linking on freebsd
+                   fixed a bunch of compile warnings
+r1235 2022-11-18 - fixed crash on goto relative path
+                   skip spread job sites where download is download-only and
+                   upload is disabled for non-download-only jobs
+                   fixed viewfilescreen sometimes deleting the wrong file
+r1234 2022-11-09 - fixed a crash on LIST timeout
+r1233 2022-10-22 - improved build compatibility with various distros
+                   readded some missing tls error handling on connection close
+                   close connections nicely in the rescan example script
+r1232 2022-10-16 - added speed below/above transfer filters
+r1231 2022-09-13 - fixed a bug with hanging transferjobs when reseting them at
+                   the exact right moment where one site considers the job done
+                   but the other doesn't
+r1230 2022-08-30 - added downloadtopath udp command for starting download jobs
+                   to a specific target path
+r1229 2022-08-18 - don't abort ongoing transfers when a spread job times out
+r1228 2022-07-22 - fixed a case where cb thinks a transfer failed because they
+                   site sent both retr/stor responses in the same packet
+r1227 2022-07-14 - don't start spread jobs with race profile if no transfers are
+                   possible between any site pair
+r1226 2022-06-28 - add a keybind (E) to jump directly to the site sections
+                   screen while browsing
+r1225 2022-06-26 - fixed a possible case of the spread job complete detector
+                   misreporting a site as done site while one or more subdirs
+                   isn't done yet
+r1224 2022-06-19 - fixed some more maxlen formatting issues
+r1223 2022-06-19 - fixed some issues with maxlen-limited strings with formatting
+                   codes
+r1222 2022-06-19 - added an indicator that a section is already bound to the
+                   current dir in the select sections list when binding a
+                   section
+r1221 2022-06-19 - fixed length tracking and cursor behavior in ui strings
+                   containing formatting codes
+r1220 2022-06-14 - fixed spread jobs not getting status done when a subdir is
+                   skiplisted on some site
+r1219 2022-05-25 - added an option for using STAT -L as list command
+r1218 2022-05-02 - fixed transfer job reset not working properly
+r1217 2022-05-02 - forgot a file
+r1216 2022-05-02 - fixed a crash when rotating out a transfer job while a file
+                   list refresh for the job is lingering
+r1215 2022-04-18 - fixed spread job reset after timeout
+r1214 2022-04-18 - fixed some bad copypasta
+r1213 2022-04-18 - added max runtime settings for spread jobs and transfers,
+                   overridable per site
+r1212 2022-04-15 - fixed a job mismatch bug when aborting/cleaning jobs
+r1211 2022-04-14 - oops, forgot to remove the ceiling cap for refresh rate (100)
+                   in the graph
+r1210 2022-04-14 - added a metric for total file list refresh rate
+r1209 2022-04-14 - skip a wasteful scoreboard looping code path
+                   re-scale list frequency performance level rates
+r1208 2022-04-14 - fix a case of excessive scoreboard looping under certain
+                   conditions
+r1207 2022-04-13 - added stats reset functionality. available from info screen
+                   and site status screen
+r1206 2022-04-13 - added configurable history rotation for spread jobs, transfer
+                   jobs, transfers, log buffers
+r1205 2022-04-08 - added a metric for worker queue size
+r1204 2022-04-08 - reduce ui cpu usage by a lot by switching to a better suited
+                   container type for the virtual rendering buffers
+r1203 2022-03-21 - added transfer job id in api creation response
+r1202 2022-03-20 - fixed a bug where string comparisons in naturally sorted
+                   structures would ignore the character immediately following a
+                   number
+r1201 2022-02-23 - added support for referencing transfer jobs via id in the
+                   rest api, to handle situations where multiple jobs have the
+                   same name
+                   added the external script examples dir in tarball generation
+                   added symlink support in the rescan external script
+r1200 2022-02-18 - added support for local move/rename
+r1199 2022-02-14 - added an example external script (site rescan) written in
+                   python
+r1198 2022-02-14 - added a goto path feature (press g while browsing)
+r1197 2022-01-28 - (re)added support for specifying "sectionname/subpath" in api
+                   calls for starting transfer jobs + sending raw commands
+r1196 2022-01-27 - fixed broken escaped keybinds for rxvt and others
+r1195 2022-01-26 - fixed a scenario where starting too many transfer jobs would
+                   result in a freeze
+r1194 2022-01-25 - fixed another case of api responses leaking between
+                   connections
+r1193 2022-01-25 - fixed a case of api responses leaking between http
+                   connections when a connection is closed prematurely
+r1192 2022-01-15 - fixed missing new dependency for data file tools
+r1191 2022-01-15 - improved error handling during local filesystem operations
+                   added some robustness to the data file writing procedure to
+                   avoid data loss when system runs out of space
+                   fixed compiling with older g++ (4.9-5)
+r1190 2022-01-14 - fixed some rendering issues
+                   added local mkdir
+r1189 2022-01-14 - improved openssl version compatibility
+r1188 2022-01-11 - fixed some rendering issues
+r1187 2022-01-08 - fixed some rendering issues
+                   fixed bad api auth token format
+r1186 2022-01-07 - added support for executing external scripts. see readme and
+                   example script in the examples dir
+r1185 2021-12-28 - fixed a rendering edge case crash
+r1184 2021-12-28 - fixed various rendering bugs
+r1183 2021-12-18 - fixed constexpr abuse
+r1182 2021-12-16 - some more rendering improvements
+r1181 2021-12-16 - fixed some rendering issues
+r1180 2021-12-16 - missed a few files in last commit
+r1179 2021-12-16 - rewrote the ui rendering system and added a virtual drawing
+                   layer - scrolling is now supported in all views when needed
+                   added a setting for highlighting entire lines by default
+r1178 2021-12-08 - fixed some typos
+r1177 2021-12-08 - added support for building/running through docker
+                   try: make docker-build && make docker-run
+r1176 2021-10-30 - Fixed a crash when starting download jobs to a non-existing
+                   path
+r1175 2021-09-18 - fixed a missing declaration in last commit
+r1174 2021-09-18 - added a button in the skiplist for testing rules outside of
+                   spread jobs
+r1173 2021-07-28 - added a restapi endpoint for general info, same as in the
+                   info screen
+r1172 2021-07-26 - fixed a bunch of skiplist bugs
+r1171 2021-07-20 - fixed support for unique skiplist rules using regex
+r1170 2021-07-09 - check destination site section skiplist in transfer jobs, if
+                   a destination site section was specified when starting the
+                   job
+r1169 2021-06-25 - added an api endpoint for deleting stuff that isn't bound to
+                   any job
+r1168 2021-05-15 - fixed a crash when readding a finished spreadjob via api with
+                   reset enabled
+r1167 2021-04-17 - fixed crash when trying to view a file and the download fails
+r1166 2021-04-14 - added a keybind in the browse screen for toggle hiding all
+                   fields except name (press h)
+r1165 2021-03-19 - fixed a crash due to the available slot counter being wrong
+                   after using view file
+r1164 2021-03-19 - newer encryption key derivation method
+                   improved build process on bsd
+                   fixed a crash when creating the same prepared race multiple
+                   times
+r1163 2021-03-07 - added a get file endpoint in the api
+                   file viewing will now wait for a slot instead of failing if
+                   all download slots are busy
+                   internally viewed files are now downloaded to ram instead of
+                   to disk
+r1162 2021-02-24 - moved fd->sockid translation into the polling wrapper and use
+                   userdata fields for epoll/kqueue instead of a map
+r1161 2021-02-09 - fixed some more compiler complaints
+r1160 2021-02-08 - fixed some more compiler complaints
+r1159 2021-02-08 - fixed some compiler complaints when building on osx
+r1158 2021-02-05 - removed some debugging code that sneaked its way into last
+                   rev
+r1157 2021-02-04 - fixed compiling on FreeBSD
+                   fixed some compiler warnings
+r1156 2021-01-29 - added some more filters for spreadjobs+transferjobs api
+                   endpoints
+r1155 2021-01-18 - oops, section filter wasn't made optional
+r1154 2021-01-18 - added section filter for the /sites api endpoint
+r1153 2021-01-17 - added a status query param for the GET /spreadjobs and
+                   /transferjobs api endpoints
+r1152 2021-01-10 - fixed transfer jobs getting stuck when there are unskiplisted
+                   0-byte files on the source
+r1151 2021-01-02 - skiplist support for transfer jobs
+r1150 2021-01-01 - set data file path through Makefile.inc
+r1149 2021-01-01 - fixed a crash when downloading to an unwritable path
+r1148 2021-01-01 - fixed a crash when fxp'ing within a site
+r1147 2020-12-18 - improved performance when too many jobs are loaded
+                   fixed a file list parsing error for a certain output format
+r1146 2020-10-13 - fixed a crash on incoming data from a new client socket under
+                   certain schedulings that may happen during heavy load
+                   fixed an ui glitch when wiping/deleting data while local
+                   split browsing
+                   fixed a crash on certain unexpected STAT response formats
+r1145 2020-08-25 - fixed memory corruption when loading too large file lists
+                   with LIST
+r1144 2020-08-14 - fixed a race condition crash during local download/list with
+                   broken pasv enabled
+                   fixed a regression with incomplete site list disappearing on
+                   spread job abort/timeout
+r1143 2020-08-06 - fixed unallowed transfers showing up in scoreboard in some
+                   scenarios
+                   fixed some lint and clang warnings
+r1142 2020-07-17 - missed these files in last commit
+r1141 2020-07-16 - fixed a crash on startup when a keybind was unbound
+                   fixed a crash when local transfers fail
+                   fixed download jobs downloading the same file multiple times
+r1140 2020-07-09 - fixed an issue where spread jobs were sometimes marked as
+                   complete on a site before all subdirs had been checked
+r1139 2020-07-08 - fixed a new bug causing skip of the filelist update call
+                   chain
+r1138 2020-07-08 - removed a superfluous time measurement method
+r1137 2020-07-07 - added support for binding multiple keys to an action
+                   fixed a bug when switching keybinds between two keys
+r1136 2020-07-03 - fixed a crash when having 0 download slots on a site in a
+                   spread job
+r1135 2020-07-03 - removed some outdated help text
+r1134 2020-07-02 - changed how logins/maxup/maxdn works - 0 now means 0 rather
+                   than all. An extra option for "all" has been added.
+                   Added info about already bound sections for the same dir when
+                   binding a section
+                   Removed strong confirmation for the "remove from all spread
+                   jobs" thingy
+                   Fixed a crash when deleting the last site
+r1133 2020-06-26 - added browse hotkey for transfer jobs (to jump directly into
+                   split view in the job paths)
+                   improved section hotkey behavior when split browsing
+r1132 2020-06-24 - added hotkey (X) to remove a site from all running spread
+                   jobs
+r1131 2020-06-14 - fixed some more rxvt keys
+r1130 2020-06-14 - fixed ctrl-u behavior
+                   improved key ctrl/shift key matching for different terminals
+r1129 2020-06-14 - fixed an issue with control key keycode variances between
+                   systems
+r1128 2020-06-14 - added support for ctrl+(left/right/u) in all text fields
+                   improved rest api error handling
+r1127 2020-06-08 - added api endpoints for global section management
+r1126 2020-06-06 - don't retain statistics for sites that no longer exist
+r1125 2020-06-05 - fixed newly broken ui commands
+r1124 2020-06-04 - added filtering support in the raw data screen
+r1123 2020-06-04 - fixed a bug that prevented races from timing out under
+                   certain conditions
+r1122 2020-06-02 - added a raw command hotkey in race status
+                   some minor refactoring
+r1121 2020-05-23 - connecting with the right amount of slots on transferjob
+                   start
+r1120 2020-05-13 - moved UDP toggle to global hotkeys, instead of just
+                   mainscreen
+r1119 2020-05-12 - fixed a crash when pressing ctrl+w at the beginning of a
+                   string
+                   the next prepared race starter is no longer spent for jobs
+                   that are
+                   skipped by the skiplist
+                   made skiplist pattern field longer
+                   added some stuff to the faq
+r1118 2020-05-10 - fixed the transfer job reset function as it didnt work
+                   properly in all scenarios
+r1117 2020-05-10 - fixed a crash when viewing file
+                   fixed a case of uploads failing
+                   improved local transfer verbosity
+                   added support for data channel proxy
+                   added support for ipv6 through proxy
+                   added support for dns lookup through socks5 proxy
+                   added support for socks5 bind mode
+r1116 2020-05-06 - forgot these files
+r1115 2020-05-06 - improved and added error handling in various transfer
+                   scenarios
+r1114 2020-04-18 - added keybinds for disconnecting all slots of a site
+r1113 2020-04-17 - fixed a crash when resizing log screens while being scrolled
+                   up
+r1112 2020-04-16 - fixed a rare crash when using LIST or local downloads/uploads
+                   changed api filelist format from dict to list
+r1111 2020-04-13 - added a few more list frequency modes for better tweaking
+                   possibilities
+r1110 2020-04-12 - added api endpoints for transfer jobs
+r1109 2020-04-11 - improved graph drawing performance
+                   switched direction of the graphs
+r1108 2020-04-08 - missed these files in last commit
+r1107 2020-04-08 - added cpu load tracking, visible in the info screen + metrics
+                   added a metrics screen (m from mainscreen) with some very
+                   experimental (read buggy) load graphs
+                   added support for dynamic file list refresh rate during
+                   spread jobs that will adjust based on cpu load
+                   added an option to switch between fixed/dynamic rate in edit
+                   site
+                   improved dir switching logic
+r1106 2020-03-31 - added a reset function for transfer jobs
+r1105 2020-03-29 - fixed a problem where the keybinds screen took precedence
+                   over input into text fields
+                   added ctrl+w for word erase in all text fields
+r1104 2020-03-28 - improved error handling in raw command through rest api
+r1103 2020-03-27 - fixed persisting browse screen keymaps to data file
+r1102 2020-03-27 - added a keybinds configuration system
+                   press '?' from (almost) anywhere in the ui
+                   global keybinds available from global options
+r1101 2020-03-13 - added rest api endpoints for reseting/aborting/deleting files
+                   in spread jobs
+r1100 2020-03-08 - improved separation of whether a transfer failed or was dupe
+r1099 2020-02-29 - changed the format of the sections entry for sites in the
+                   rest api from a dict to a list
+                   added separate endpoints for site section manipulation, see
+                   the API file
+r1098 2020-02-24 - added reset flag to the api spec
+r1097 2020-02-24 - added a reset flag when starting a spread job via the https
+                   api
+r1096 2020-02-09 - added a file info screen for being able to see file details
+                   when browsing in a too narrow terminal. select a file and
+                   press i
+                   moved the identicals feature to key I
+r1095 2020-02-07 - added a variable in raw commands: $path(sectionname) to
+                   insert section paths in the command
+                   works both through the ui and the api
+r1094 2020-02-05 - fixed a crash on race end with unfinished download-only-sites
+                   and outstanding file list retrievals
+                   fixed download-only in distribute jobs (again)
+r1093 2020-02-05 - ignoring the status of download-only sites when considering
+                   whether a spread job is done
+r1092 2020-02-05 - fixed download-only for distribute jobs
+r1091 2020-02-05 - added an insert keybind in the move screen to insert the
+                   currently selected item
+r1090 2020-02-05 - fixed a race condition assert fail during startup with data
+                   file encryption disabled
+r1089 2020-02-02 - more error handling fixes
+                   improved slot reuse after transfer error
+r1088 2020-02-02 - fixed a crash when cwd'ing to a nonexisting dir in some cases
+r1087 2020-02-02 - fixes for error handling, job switching and dir revisit
+                   timing
+r1086 2020-01-31 - improved some file list refresh decision scenarios
+r1085 2020-01-31 - improved signal handling
+r1084 2020-01-29 - fixed transfer jobs not completing properly since recently
+r1083 2020-01-28 - fixed a bug with lingering file list requests due to using
+                   anti-anti-idle with max idle time < 10 seconds
+r1082 2020-01-26 - file list refresh rate is now controlled on site level
+                   instead of per connection, and based on site priority
+                   reworked usage of delayed commands in sitelogic
+r1081 2020-01-18 - added support for encrypted UDP remote commands
+r1080 2020-01-16 - improved TLS error handling and logging
+r1079 2020-01-15 - fixed missing proxy settings when copying a site
+r1078 2020-01-03 - cwd to the right dir before wipe/nuke to help bad scripts do
+                   their job
+r1077 2020-01-03 - added api endpoints for getting/starting spread jobs
+r1076 2020-01-01 - added an extra download-only sites field on
+                   race/distribute/prepare remote commands
+                   can be used instead of the affil list per site
+r1075 2019-12-30 - added Z hotkey to abort+delete spread job on all involved
+                   sites (z only deletes on incomplete sites)
+r1074 2019-12-29 - minor fixes for packaging purposes
+r1073 2019-12-26 - added support for move/rename while browsing
+r1072 2019-11-16 - fixed a crash when attempting to natural sort too long
+                   numbers
+r1071 2019-11-16 - fixed a crash when api responses contain non-utf8 compatible
+                   data
+r1070 2019-11-01 - missed a case in last commit
+r1069 2019-10-31 - fixed remote command bell on auto-started prepared spread job
+r1068 2019-10-30 - fixed a bug in the natural sort function
+r1067 2019-10-20 - added missing cancel keybinds
+r1066 2019-10-20 - made data file encryption optional
+r1065 2019-10-19 - using natural sorting for file list contents, sites, affils
+r1064 2019-10-17 - added an api endpoint for file lists
+                   changed the output of the raw command endpoint slightly
+r1063 2019-10-16 - added filtering support in the event log
+r1062 2019-10-12 - added support for binding/adding multiple sections at once
+r1061 2019-10-11 - fixed a rawbuf insertion bug from last commit
+r1060 2019-10-11 - fixed crash when receiving a too large raw command response
+r1059 2019-10-10 - added missing api documentation in the packer script
+r1058 2019-10-10 - reimplemented some broken request callbacks
+r1057 2019-10-10 - fixed packer script recognizing .hpp and .c files
+r1056 2019-10-10 - added a HTTPS/JSON REST API
+                   see README+API for details
+                   just a few endpoints for now, more to come later
+r1055 2019-09-30 - fixed a bug in tick skew correction
+r1054 2019-09-19 - made the list of incomplete sites persist after a spread job
+                   has timeouted or been aborted
+r1053 2019-09-19 - added support for using sectionname/subpath in the remote
+                   commands supporting section name instead of path
+r1052 2019-09-18 - added incomplete indicator and affil indicator in the race
+                   status screen
+r1051 2019-09-16 - fixed link error with static openssl on certain systems
+r1050 2019-09-12 - fixed a bad delete of referenced object when a transfer job
+                   completes
+r1049 2019-09-11 - fixed a bunch of filelist-related memory leaks
+                   improved core time ticker accuracy
+r1048 2019-09-01 - small oops
+r1047 2019-09-01 - added missing path field in the transferjob status screen
+r1046 2019-08-24 - added a "stay logged in" option in editsite with anti-anti-
+                   idle support
+r1045 2019-08-24 - fixed a crash when clearing the base path field of a site
+r1044 2019-08-19 - fixed a crash on idle timeout just after STAT was sent
+r1043 2019-08-19 - added support for ipv6 local transfers
+                   added support for ipv6 fxp
+                   added support for ipv6 LIST
+                   added support for CEPR, see readme
+r1042 2019-08-15 - changed a function name for openssl 1.1.1
+r1041 2019-08-15 - fixed a bad check during signal handling
+r1040 2019-08-15 - added brackets when printing ipv6 address with port
+r1039 2019-08-15 - added missing files from last commit
+r1038 2019-08-15 - reorganized the core library a bit
+                   added core ipv6 support
+r1037 2019-08-01 - showing free space during local browsing
+r1036 2019-07-25 - added snake
+r1035 2019-07-24 - fixed a case of failing to recognize (?i) in a regex when
+                   adding it in a certain way
+r1034 2019-07-24 - fixed a crash when deleting the last item from a skiplist
+r1033 2019-07-24 - improved skiplist checker looping order
+r1032 2019-07-09 - fixed a crash when aborting/deleting files in a race that is
+                   either empty or not yet size estimated
+r1031 2019-07-07 - improved transfer error handling a bit
+r1030 2019-07-06 - added a keybind (ctrl+l) for clearing the log in
+                   rawcommand/rawdata views
+r1029 2019-07-04 - fixed a parsing bug in 24hr stats reading from data file
+r1028 2019-06-26 - persist 24hr stats in data file
+                   clear unique/identical in browsing when cwd/close
+r1027 2019-06-13 - fixed a crash with regex syntax conflicting with data file
+                   syntax
+                   "broken" skiplist rules will be removed when loading the data
+                   file.
+r1026 2019-06-13 - added support for (?i) at the beginning of regex strings for
+                   case insensitivity
+r1025 2019-06-12 - some behavior improvements when username is longer than 8
+                   chars
+                   the z hotkey now attempts to only delete on incomplete sites
+                   (defined as <95% uploaded)
+r1024 2019-06-04 - added regex support in the skiplist
+r1023 2019-06-03 - added regex support in browse filtering, press F, or f then
+                   tab
+r1022 2019-05-31 - replaced some nonstandard syntax
+r1021 2019-05-31 - forgot to add legend text for the keybind
+r1020 2019-05-31 - added the z hotkey in the all spread jobs screen as well
+r1019 2019-05-31 - made the next prepared spread job starter timeout
+                   configurable in global options
+                   defaults to 5 minutes
+r1018 2019-05-30 - added a hotkey (z) for aborting a spread job and deleting own
+                   files on all sites in one keypress (plus confirmation)
+                   available in the race status screen and from the main screen
+r1017 2019-05-23 - fixed a crash when using unique compare with separators
+                   enabled
+                   cleaned up the ui code a bit
+r1016 2019-05-18 - fixed mkdir from ui not respecting target path
+r1015 2019-04-21 - added a function for showing items that exist on both sides
+                   while split browsing, press i to activate
+r1014 2019-04-18 - fixed a slot counting error resulting in freezing on transfer
+                   jobs
+r1013 2019-04-08 - improved last commit a bit
+r1012 2019-04-08 - filtering _INT tag from group names
+r1011 2019-03-17 - added section hotkeys
+                   quick jump on mainscreen now works even if a site is not
+                   currently selected
+                   selecting items with space while browsing now jumps down one
+                   item
+                   improved nuke/wipe command result parsing
+r1010 2019-03-08 - fixed a crash on race timeout
+r1009 2019-03-06 - fixed a bug in skiplist matching
+                   wipe skiplist caches when spread jobs are finished
+r1008 2019-03-06 - fixed a skiplist action issue from r1007
+r1007 2019-03-06 - reduced skiplist caching memory usage
+                   removed skiplist default action (can be replicated with a
+                   rule at the end)
+                   added pgup/pgdn support in the skiplist screen
+                   added quick-nuke option: incomplete
+r1006 2019-03-02 - fixed a bug causing failure to delete files on sites from
+                   race status and remote command
+                   fixed a bug causing the similar-check to produce false
+                   positives in some cases
+                   improved the similar-check pattern matcher with certain
+                   naming acceptances
+r1005 2019-02-24 - the all races screen now lists running races on top
+                   renamed race -> spread job in a few places
+r1004 2019-02-23 - fixed a silly bug because i forgot to change a thing last rev
+r1003 2019-02-23 - added some advanced slot configuration settings per site
+r1002 2019-02-21 - fixed a long-lasting sporadic transferjob crash
+r1001 2019-02-20 - Added a new skiplist action: Similar, to help with avoiding
+                   unwanted files.
+                   See the readme for details on how it works.
+r1000 2019-02-18 - fixed a crash when reseting race
+                   fixed a crash when adding sites to a job
+                   fixed some inconsistencies with smart pointer usage
+r999 2019-02-17 - fixed a leak causing higher cpu usage over time
+                  moved some stuff over to smart pointers, small code changes
+                  everywhere
+                  fixed some minor bugs
+                  added some keybinds for aborting/reseting jobs from mainscreen
+                  and all jobs screens
+                  added keybind for editing site directly from race status
+                  renamed race to spread job everywhere in the ui (i think)
+r998 2019-01-30 - fixed a recursion loop bug during transfer jobs
+                  fixed behavior when download jobs encounter existing files
+r997 2019-01-28 - fixed scoreboard file sizes never updated after add
+                  fixed broken scoreboard index after element removal
+r996 2019-01-26 - Various UI usability improvements:
+                  Added some information screens for certain events to help
+                  explain why something won't work, like starting a spread job
+                  without having a section bound and similar
+                  added some new keybinds:
+                  - press b in the race status view to browse the job dir of the
+                  selected site
+                  - press T in the race status view to view transfers of the
+                  selected site for that job
+                  - press S in global options / edit site to quick jump to the
+                  skiplist
+                  Added some new questions to the readme FAQ
+                  added a new quick-nuke option, w for dupe.web
+r995 2019-01-26 - fixed a case of transfers not being added to scoreboard if
+                  target dir was in an intermediate state
+r994 2019-01-26 - dupe status fix
+r993 2019-01-26 - fixed a bunch of newly created problems
+                  lots of bad luck while thinking today
+r992 2019-01-25 - fixed a bug due to removing from the scoreboard while
+                  iterating over it
+r991 2019-01-25 - sorry, i broke it
+r990 2019-01-25 - fixed a new crash when a file is deleted right before transfer
+                  while cpu overload management is active
+r989 2019-01-25 - rewrote how failed transfers are handled in the scoreboard
+                  fixed some timeout issues
+r988 2019-01-22 - ignore affil match on distribute job start
+r987 2019-01-21 - added support for using section names in a few more remote
+                  commands
+r986 2019-01-20 - fixed some bad file name truncations resulting in files with
+                  certain file extensions (flac, jpeg) showing up weirdly in the
+                  race status screen
+r985 2019-01-20 - slight improvement to xdupe output catching
+r984 2019-01-19 - fixed a bug in scoreboard population
+r983 2019-01-12 - fixed a few bugs in scoreboard population
+r982 2019-01-07 - fixed a few crashes when no sites are added
+r981 2019-01-06 - fixed an edge case of missed scoreboard item removal
+r980 2019-01-03 - improved timeout handling
+r979 2019-01-01 - removed some obsolete code that is now part of the c++
+                  standard
+r978 2018-12-29 - added some modes for when to sound the terminal bell on remote
+                  commands
+r977 2018-12-28 - ignore "percentage owned" or "low progress" scoring criteria
+                  for target sites with very high priority
+r976 2018-12-26 - fixed re-mkdir on soft race reset
+r975 2018-12-24 - fixed some edge cases of scoreboard item removals
+r974 2018-12-24 - fixed a bug with clipping away xdupe data
+r973 2018-12-23 - fixed a typo bug in potentiality handling
+r972 2018-12-23 - added another response that should be caught by the dupe
+                  transfer status
+r971 2018-12-23 - improved timeout handling
+                  fixed an edge case resulting in endlessly running spread jobs
+r970 2018-12-23 - separate dupe from other 553 responses
+r969 2018-12-23 - fixed a scoreboard misalignment crash
+r968 2018-12-23 - fixed a bad equality check
+r967 2018-12-23 - rewrote the scoreboard population mechanism from scratch
+                  now only comparing filelist diffs since last refresh instead
+                  of full clear/repopulate on every round
+                  should reduce cpu usage a bit
+                  improved the xdupe implementation
+                  merry christmas!
+r966 2018-12-12 - fixed aborted transfers unaffected by transfer filtering
+r965 2018-12-07 - added site priority on the mainscreen
+r964 2018-12-02 - transfer filtering auto enables current type when entering a
+                  value
+r963 2018-12-02 - fixed an unintended case of skiplist applying on transfer job
+                  base dirs
+r962 2018-12-02 - improved verbosity during multibnc connect
+r961 2018-11-30 - improved timeout handling
+r960 2018-11-29 - added a check to prevent creating duplicate site names
+r959 2018-11-29 - improved behavior when wiping/deleting/nuking many items at
+                  once
+r958 2018-11-24 - respect disabled sites when using a section name in the remote
+                  idle command
+r957 2018-11-17 - fixed a few cases of transfer jobs getting stuck
+r956 2018-11-15 - dont count timouted sites as done
+r955 2018-11-15 - improved race switching behavior during multiple ongoing
+                  spread jobs within a site where a job does not have any dirs
+                  created yet
+r954 2018-11-15 - improved timeout tracking further
+                  fixed a minor scoreboard refresh bug
+r953 2018-11-15 - a new stab at timeout balancing
+r952 2018-11-13 - improved spread job timeout behavior by not increasing timeout
+                  counter while any involved site is busy on all connections
+r951 2018-11-12 - ignoring filelist metadata changes (owner, group,
+                  lastmodified) in the complete detector and timeout tracker to
+                  avoid endless races with buggy sites
+r950 2018-11-12 - fixed off-by-one request count in browse mode
+r949 2018-11-12 - fixed a crash when deleting the last site in the site list
+r948 2018-11-10 - fixed a problem with endlessly running transfer jobs when the
+                  source is deleted
+r947 2018-11-08 - fixed a few potential errors due to new list splitting
+                  behavior
+r946 2018-11-07 - fixed a bug with sections/skiplist not being saved properly
+                  when configuring a new site to be added
+r945 2018-11-07 - fixed a crash when nuking without reason due to unexpected
+                  string splitting behavior
+r944 2018-11-07 - improved section handling
+                  added a section select from list when adding new section on a
+                  site
+                  added support for section-based skiplists
+                  press s from the mainscreen
+r943 2018-11-03 - fixed the broken site upload checkbox in the mainscreen
+r942 2018-11-03 - improved browsescreen request handling
+                  using asynchronous filesystem functions in browsescreenlocal
+r941 2018-11-02 - added asynchronous functions for some local filesystem
+                  operations
+r940 2018-09-28 - improved handling of automatic reconnect
+r939 2018-09-28 - always respect max idle time, even when spread jobs are
+                  ongoing
+r938 2018-09-20 - added support for implicit tls
+r937 2018-09-11 - removed a duplicate function
+r936 2018-09-11 - exclude nfo/sfv from avg transfer speed statistics
+r935 2018-09-10 - fixed a skiplist use case where site skiplist should override
+                  global skiplist to avoid skipping entire jobs
+r934 2018-08-09 - enabled usage of c++11 - this means support for old compilers
+                  (older than g++-4.9) is now dropped.
+                  replaced some maps with hashmaps (std::unordered_map) for
+                  performance reasons
+                  removed the Pointer class since it was a backport of
+                  std::shared_ptr
+r933 2018-08-07 - fixed a newly introduced bug with duplicate section names in
+                  the new race screen
+r932 2018-08-06 - added support for selecting multiple items in browse mode
+r931 2018-08-03 - fixed a new crash because of a missing null check when
+                  requesting a file list fails
+r930 2018-08-02 - added some build details in the info screen
+r929 2018-08-02 - added cwd output viewing when browsing, press l
+r928 2018-08-01 - fixed an edge case where a race could run indefinitely because
+                  it kept readding a potential transfer forever when all the
+                  following criteria was met:
+                  - the target file did not exist because the target site kept
+                  denying it
+                  - the target dir was 100% owned by you or empty
+                  - the max file size for the job was more than 2000 times
+                  larger than the attempted file
+                  - a large amount of transfers toward the same target site had
+                  failed before, reducing the avg speed to 0
+r927 2018-07-08 - fixed a crash when removing a site from a race
+r926 2018-07-06 - added support for automatic transfer aborting when aborting
+                  jobs
+                  added support for manual transfer abort by pressing B in the
+                  transfers screen + transfer status screen
+r925 2018-07-05 - fixed site name not updated on site rename in raw command
+                  screen
+r924 2018-06-26 - improved file size tracking during transfer
+r923 2018-06-26 - removed last trace of usage of exceptions
+r922 2018-06-25 - fixed the transferred size of a file sometimes outgrowing the
+                  total size
+r921 2018-06-25 - improved the (broken) file ownership percentage calculation
+r920 2018-06-21 - ignore sigpipe in gdb startup script
+r919 2018-06-21 - fixed ownership registration of files when nick > 8 chars
+r918 2018-06-20 - added some safety checks against starting jobs with empty
+                  fields
+                  improved remote command robustness against extra spaces and
+                  control chars
+r917 2018-06-20 - improved behavior when removing a site from a race
+r916 2018-06-19 - fixed a bug with cwd failure before transfer init resulting in
+                  transfer failure
+r915 2018-06-19 - improved loginscreen version bump rebuild detector
+r914 2018-06-19 - fixed a crash with empty aes passphrase
+                  removed backwards compatibility with older data file format
+r913 2018-06-14 - fixed some uninitialized warnings
+r912 2018-06-13 - using a more reliable path locator in the redist script
+r911 2018-06-13 - fixed svn root in makefiles when checked out on higher level
+r910 2018-06-02 - fixed a crash in the newrace screen when switching sections
+r909 2018-06-01 - added support for deleting local items through local browsing
+r908 2018-05-25 - shuffle potential transfers of equal score in the scoreboard
+                  to minimize the risk of dupe conflicts with other users
+r907 2018-05-25 - added mkdir function in ui - press m while browsing
+r906 2018-05-19 - suppress log events when a temporary legend printer is active
+r905 2018-05-19 - added a hotkey for highlighting a full table line - '-'
+                  works in allraces, alltransferjobs, browsing, skiplist, main
+r904 2018-05-17 - added job status in the bottom legend bar for jobs started
+                  through the ui.
+                  will be visible as long as the browse screen is open.
+r903 2018-05-16 - fixed a bug causing transferjobs where no files could be moved
+                  to be stuck in queued state
+r902 2018-05-14 - improved speed calculation etc when queueing multiple transfer
+                  jobs
+r901 2018-05-06 - fixed a bug with new transfers being started for a spread job
+                  even though it had been aborted
+r900 2018-04-25 - added a remote command for hard reset of spread jobs
+r899 2018-04-15 - fixed a bug resulting in ignoring unique skiplist rules in
+                  some cases
+r898 2018-04-15 - fixed some buggy potential tracking preseed code
+r897 2018-04-13 - fixed quick jumping when target is outside the current view
+r896 2018-04-12 - fixed action mappings for last commit
+r895 2018-04-12 - added quick jump (q) support in the browse screen site list
+r894 2018-04-08 - missed this, contains changes that aren't used yet
+r893 2018-04-08 - added a new skiplist action - Unique
+                  if multiple files/dirs within a directory matches such a rule,
+                  only one will be transferred
+                  i.e. *.sfv means only one sfv will be uploaded per directory.
+                  added output of which rule that was matched in the skiplist
+                  pattern test feature
+r892 2018-03-23 - fixed raw command input not showing in raw command screen if
+                  target connection was already connected and in another path
+r891 2018-03-09 - added support for using section name instead of site list in
+                  the idle remote command
+r890 2018-03-08 - added affil only download mode
+r889 2018-03-05 - use sigaction instead of signal (since signal results in
+                  undefined behavior in multithreaded programs, doh)
+r888 2018-02-13 - dont ignore manual race start of skiplisted items
+r887 2018-02-12 - fixed a bad CommandOwner call that was missed in the previous
+                  commit
+r886 2018-02-11 - some fixes for transfer jobs never finishing
+r885 2018-02-08 - added a keybind (L) to login on all slots from the mainscreen
+r884 2018-02-08 - better fix for sigpipe in openssl
+r883 2018-02-08 - improved SSL_shutdown handling
+r882 2018-02-07 - fixed login failure output showing up properly in the
+                  browsescreen
+r881 2018-02-06 - fixed broken handling of TLS session reuse for local transfers
+r880 2018-02-06 - added one-way SSL_shutdown for proper socket termination
+                  sequence
+r879 2018-01-21 - added remote command listener and next prepared race start
+                  info on the mainscreen info bar
+r878 2018-01-16 - fixed a bug in 24hr mainscreen stats
+r877 2018-01-16 - fixed scrolling in selectjobsscreen
+r876 2018-01-15 - remade sites menu on the mainscreen, getting rid of the
+                  menuselectsite class
+r875 2018-01-12 - fixed memory leak when disconnecting connections with data in
+                  send queue under certain circumstances
+                  fixed memory leak on getaddrinfo
+r874 2018-01-08 - fixed counting of ongoing filtered transfers
+r873 2018-01-08 - fixed transfer filtering rolling behavior when transfer
+                  history is full
+r872 2018-01-08 - updated a legend text
+r871 2018-01-08 - added support for transfer filtering.
+                  can be configured by pressing f from the transfers screen,
+                  or quick-accessed by pressing t from sitestatus, race status
+                  or transferjob status screens
+r870 2017-12-25 - fixed openssl version ifdefs
+r869 2017-12-10 - fixed a crash when a transfer is bound during quit
+r868 2017-11-25 - always use TLS for LIST if site uses AUTH TLS
+r867 2017-11-19 - fixed missing braces
+r866 2017-11-18 - improved state management
+r865 2017-11-18 - fix for late close call when a new socket has been opened
+r864 2017-11-18 - implemented proper request failing on connection failure etc
+r863 2017-11-18 - fixed reconnect while QUIT in progress
+r862 2017-11-18 - small disconnect timing fix
+r861 2017-11-17 - added an assert
+r860 2017-11-17 - fixed a small login bug
+r859 2017-10-23 - fixed an edge case crash in stats collection
+r858 2017-10-21 - site copy shouldn't copy stats
+r857 2017-10-09 - fixed int overflow in conversion
+r856 2017-10-09 - added persistent traffic measurements for sites, spread jobs,
+                  and global
+                  no ui for spread jobs traffic yet though
+                  new info screen - press i from main
+r855 2017-10-07 - doh, missed this file
+r854 2017-10-07 - changed the default race reset behavior to not re-mkdir. Old
+                  behavior still available by pressing R (uppercase) instead
+r853 2017-10-07 - skip race if no transfers can be performed because affil, all
+                  upload disabled, all download disabled
+r852 2017-09-28 - fixed a bad path comparison
+r851 2017-09-28 - oops
+r850 2017-09-28 - fixed a section path finding bug
+r849 2017-09-27 - fixed ssl version tag and removed client cert enforcer
+r848 2017-09-27 - client cert callback
+r847 2017-09-27 - some crypto fixes
+r846 2017-09-26 - forgot these
+r845 2017-09-26 - improved ssl cert/key loading
+r844 2017-09-18 - fix ncurses linking on osx
+r843 2017-09-18 - added missing headers
+r842 2017-09-18 - fixed clang warnings
+r841 2017-09-18 - fix MSG_NOSIGNAL missing on osx
+r840 2017-09-03 - fixed a new crash during race creation
+r839 2017-09-02 - improved race completion percentage accuracy
+r838 2017-09-02 - added a rawwithpath remote command, for executing raw commands
+                  after cwd'ing to a given path.
+                  The path can also be a section name.
+                  syntax:
+                  password rawwithpath <sites> <path> <command>
+                  Example:
+                  password rawwithpath site1,site2,site3 TV site nuke release1 3
+                  blabla
+r837 2017-09-01 - hitting enter on a site from the race status screen jumps to
+                  site status
+r836 2017-08-28 - fixed a bug with reactivated races never finishing or timing
+                  out
+r835 2017-08-19 - fixed cursor placement in scrolled skiplist screen
+r834 2017-08-19 - fixed a rawcommand crash with bad path
+r833 2017-08-10 - fixed a bad type
+r832 2017-08-10 - added a "sscn supported" button in editsite
+                  untoggling forces the other end of an sslfxp transfer to act
+                  as ssl client
+r831 2017-08-09 - slight cleanup
+r830 2017-08-09 - fixed a crash during failing active mode local transfers
+r829 2017-08-08 - added a reset remote command
+r828 2017-08-06 - reverted an unintentional change
+r827 2017-08-06 - improved file list parsing robustness to avoid crashing on
+                  unexpected responses
+r826 2017-07-14 - added remote command for spread jobs with the 'distribute'
+                  profile
+r825 2017-05-25 - implemented transfer jobs from symlinks in a more portable way
+                  (works with remote commands as well)
+r824 2017-05-22 - updated redistribution script to add readme
+r823 2017-05-22 - Added a quite thorough readme. Please read it, you might learn
+                  something :)
+r822 2017-05-22 - fixed a skiplist check bug when adding affil sites to a race
+r821 2017-05-20 - fixed mkdir path on transfer jobs
+r820 2017-05-19 - fixed a path root reduction special case
+r819 2017-05-19 - fixed a bad transferjob assert
+r818 2017-05-19 - fixed a crash when duplicates of the same file with different
+                  case exist in a file list
+r817 2017-05-19 - fixed some mkdir crashes
+r816 2017-05-18 - added some asserts
+r815 2017-05-15 - fixed a send on negotiation bug, again
+r814 2017-05-15 - removed unused vars
+r813 2017-05-15 - fixed some send-before-connect polling states
+r812 2017-05-15 - removed obsolete code for ssl renegotiation
+r811 2017-05-15 - added support for disabling immediate socket listening
+r810 2017-05-15 - fixed immediate write after connect on plain sockets
+r809 2017-05-15 - various transferjob improvements for various edge cases
+r808 2017-05-13 - fixed starting transfer jobs from symlinks
+r807 2017-05-11 - fixed transferjobs retrying single-file transfer in i.e.
+                  speedtest dirs
+                  fixed transferjobs adding retries to total size and file count
+r806 2017-05-10 - improved behavior when limiting the number of allowed failed
+                  transfers of the same file
+r805 2017-05-08 - fixed a transferjob completion bug when the source site
+                  responds too slowly
+r804 2017-05-07 - rewrote how transfer jobs work internally.
+                  added udp commands for transfer jobs.
+                  formats:
+                  password download <site> <source path or section name> [file
+                  name]
+                  password upload <source path> [file name] <site> <target path
+                  or section name>
+                  password fxp <source site> <source path or section name>
+                  <source file> <target site> <target path or section name>
+                  [target file]
+                  optional [file name] may be included in the path instead of
+                  specified explicitly.
+                  optional [target file] is useful when the target file name is
+                  different from the source file name.
+r803 2017-04-28 - made sites reconnect continuously if disconnected while a job
+                  is still running
+                  some transferjob robustness improvements
+r802 2017-04-22 - added unique filtering to the browse screen
+r801 2017-04-19 - added ability to disable next prepared race starter
+r800 2017-04-18 - added "start next prepared race" feature with 10 minutes
+                  expiry time, press N
+                  the first prepared race arriving within this period will be
+                  started immediately
+r799 2017-04-15 - fix site skiplist match when affil
+r798 2017-04-15 - improved LIST robustness
+r797 2017-04-15 - bumped allowed time to not refresh dir while xdupe is in use
+r796 2017-04-15 - fixed cancelling wrong transfer lock when a dst site fails
+                  transfer slot lock and src site has a list lock
+r795 2017-04-15 - SSL cipher is passed on ssl success event instead of fetched
+                  afterwards
+r794 2017-04-15 - fixed LIST
+r793 2017-04-14 - fixed files stuck in upload state on dupe
+r792 2017-04-13 - added xdupe support, enabled by default
+r791 2017-04-13 - compressed editsitescreen a bit
+r790 2017-04-06 - removed transfer job timeout because it doesn't work properly
+                  in all scenarios
+r789 2017-04-06 - fixed undefined behavior when leaving a site with empty
+                  address field
+r788 2017-04-05 - pathless raw commands now respect base path
+r787 2017-04-04 - fixed transferjob slots selection on job timeout
+r786 2017-04-04 - fixed length of skiplist test pattern field
+r785 2017-03-24 - removed the aggressive mkdir option
+r784 2017-03-20 - fixed a delete bug
+r783 2017-03-19 - added 'delete own files' in the racestatusscreen
+                  added ability to remove site + delete files in one step in the
+                  racestatusscreen
+r782 2017-03-19 - improved delete behavior to appease pzs-ng's stupidness
+r781 2017-03-19 - improved handling when dir already exists and mkdir "fails"
+                  with unrecognized error
+r780 2017-03-19 - removed a rogue debugging var
+r779 2017-03-19 - added slider and navigation in transfer status log
+r778 2017-03-19 - improved transfer failure behavior
+                  improved mkdir failure behavior
+                  transfer output now also contains eventual initial mkd/cwd
+r777 2017-03-08 - fix transferjobs trying to cwd into nonexisting dirs
+                  indefinitely
+                  added a transferjob timeout incase job doesnt finish for
+                  whatever reason
+r776 2017-02-16 - fixed a bug with skiplist for sites getting default-populated
+r775 2017-02-13 - fixed mkdir already exist detect on drftpd format
+r774 2017-02-13 - fixed a crash during scoreboard reuse
+r773 2017-02-12 - improved transfer logic
+r772 2017-02-12 - dont put nfo on top prio until a certain amount of time (15s)
+                  has passed
+r771 2017-02-12 - some cwd logic improvements
+r770 2017-02-11 - fixed a null deref transferjob crash
+r769 2017-02-10 - missed this
+r768 2017-02-10 - improved ui navigation
+r767 2017-02-09 - added site-specific skiplists.
+                  removed the banned groups field, use skiplist instead
+r766 2017-02-08 - fixed unnecessary delay on failed cwd during race
+r765 2017-02-08 - fixed a nasty recursive delete bug when target was already
+                  deleted
+r764 2017-02-07 - fixed a file list state bug causing re-mkdir of deleted/nuked
+                  dirs
+r763 2017-02-07 - fixed a small info text bug while cdup'ing on a browsed site
+r762 2017-02-05 - fixed a bug with delete jobs causing cwd loop
+r761 2017-01-28 - fixed scrolling bug in scoreboardscreen
+r760 2017-01-28 - 'delete on all sites' now allows choosing which sites to
+                  delete on in the ui.
+                  added optional site list to the remote command delete. Default
+                  is to delete on all sites.
+                  syntax:
+                  <password> delete <release> [site1,site2,site3]
+r759 2017-01-28 - added race abort/delete as remote commands. delete also
+                  aborts.
+                  syntax:
+                  <password> abort <release>
+                  <password> delete <release>
+r758 2017-01-23 - fixed copypasta
+r757 2017-01-23 - raw commands are now guaranteed to be executed in the path
+                  that the raw command screen was entered from (check top right
+                  corner)
+r756 2016-12-20 - improved event queueing priority handling
+r755 2016-12-17 - improved polling resume behavior after pause
+r754 2016-12-17 - dont pause/resume polling again if already done
+r753 2016-12-17 - added system load control for io<->worker
+                  will now stop polling if the iomanager receives data faster
+                  than the worker can keep up
+                  added support for manually pausing polling on a socket to
+                  avoid overload, useful in some cases
+                  separated events into low/mid/high priority queues, ui events
+                  are high prio
+r752 2016-12-14 - forgot the makefile
+r751 2016-12-14 - base64 encoding/decoding is now provided through openssl
+                  instead of 3rd party files.
+r750 2016-12-12 - improved data file encryption method, now compatible with
+                  openssl enc
+                  for refeference, the data file can now be decrypted with:
+                  openssl enc -d -aes-256-cbc -md sha256 -in ~/.cbftp/data
+r749 2016-12-04 - fixed some issues with transferjob failures and cwd loops
+r748 2016-11-21 - fixed race timeout on multiple simultaneous races
+r747 2016-11-20 - fixed endless race when site goes down mid-race
+r746 2016-11-19 - dont show files with varying sizes (such as nfos) as uploading
+                  if the subpath is completed
+r745 2016-11-19 - improved upload handling in timeout detection
+r744 2016-11-19 - fixed continuous size estimation
+r743 2016-11-19 - improved race size measurement
+                  fixed some cases of complete detection failure
+                  fixed premature timeout on very long transfers
+r742 2016-11-19 - fixed race timeout on during long transfers without dir
+                  refresh
+r741 2016-10-31 - fixed some transferjob issues
+r740 2016-10-30 - changed SSLv23_method to TLS_method for openssl 1.1.0+
+r739 2016-10-30 - changes for openssl 1.1.0
+r738 2016-10-30 - fixed some build errors on some compilers
+r737 2016-10-30 - updated usage of EVP_CIPHER_CTX due to changes in openssl
+                  1.1.0
+r736 2016-10-30 - forgot this file
+r735 2016-10-30 - fixed a transferjob subpath bug
+r734 2016-10-30 - added a wrapper class for path handling
+                  the distribute profile will now ignore affils
+r733 2016-10-28 - fixed transferjob behavior with lazy mkdiring
+r732 2016-10-27 - fixed re-mkdiring after dir removed, broke due to lazy mkdir
+r731 2016-10-26 - forgot this file
+r730 2016-10-26 - using smart pointers for site + sitelogic to avoid crashes
+                  when deleting a used site etc
+r729 2016-10-25 - improved cwd failure and delete logic
+r728 2016-10-23 - sigh, another one
+r727 2016-10-23 - fixed a dirlisting bug with transfer jobs
+r726 2016-10-23 - improved mkdir pattern (and fixed a bad mkdir bug)
+r725 2016-10-22 - some transfer visualization improvements
+r724 2016-10-22 - implemented lazy mkdiring (i.e. don't mkdir unless there's a
+                  transfer ready)
+                  old behavior can be retained by ticking "aggressive mkdir" in
+                  edit site
+r723 2016-10-20 - improved makefiles
+r722 2016-10-18 - fixed transfer request bug
+r721 2016-10-18 - improved transferjob slot setting
+r720 2016-10-18 - improved transferjob slot usage
+r719 2016-09-27 - declared some makefile targets phony, to avoid build errors
+                  when a file with the same name exists
+r718 2016-09-26 - masked password in udp recv log printout if the password is
+                  correct
+r717 2016-09-26 - some refactoring
+r716 2016-09-26 - fixed dupe case when using broken pasv
+r715 2016-09-26 - separated transfer failures because file exists or dupe to a
+                  separate error code
+r714 2016-09-25 - added section and exclusion support to the banned groups
+                  field.
+                  examples:
+                  GROUP - GROUP is banned in all sections
+                  SECT1/GROUP - GROUP is banned in SECT1 but allowed in other
+                  sections
+                  !GROUP - only GROUP is allowed in all sections
+                  !SECT1/GROUP - only GROUP is allowed in SECT1
+                  multiple exclusion rules can also be combined to allow several
+                  groups.
+r713 2016-09-17 - added setting for prepared race expiration time to the global
+                  options screen
+r712 2016-09-14 - improved filelist filtering with support for multiple filters
+                  and negative filters
+r711 2016-09-14 - added support for filelist filtering in the browse screen,
+                  same syntax as skiplist entries
+r710 2016-09-11 - fixed disabled sites showing up in 'add sites to race'
+r709 2016-09-11 - proper handling of case differences in file names when
+                  deciding transfers, part 2
+r708 2016-09-11 - proper handling of case differences in file names when
+                  deciding transfers
+r707 2016-09-05 - fixed work queue timing crash in ftpconnect
+r706 2016-09-03 - improved ui double prio resize code
+r705 2016-09-03 - fixed handling of paths with trailing slash
+r704 2016-09-03 - fixed a bug when a server immediately disconnects
+r703 2016-08-30 - fixed a small visual bug in the loginscreen
+                  cleaned up system includes
+r702 2016-08-30 - replaced a bunch of boolmaps with sets
+r701 2016-08-29 - fixed a hang during resizable line adjustment
+r700 2016-08-29 - improved ui field resize priority
+r699 2016-08-29 - fixed a crash when using LIST with ssl
+r698 2016-08-27 - updated legend text
+r697 2016-08-27 - added a transfer status screen
+                  pasv string encoded/decoded directly in ftpconn
+r696 2016-08-22 - fixed compilation error when c++11 is enabled
+r695 2016-08-21 - added vertical scrolling for allraces, alltransferjobs,
+                  skiplist, transfers
+r694 2016-08-04 - fixed crash due to currentco being uninitialized
+r693 2016-07-13 - slight refactoring of utf8 code
+r692 2016-07-12 - added support for viewing utf-8 encoded files.
+r691 2016-07-08 - fixed a bug with accessing unallocated memory during sitelogic
+                  requests
+r690 2016-07-06 - added a raw command for idling, with an optional number of
+                  seconds
+                  the format is:
+                  password idle site1,site2 seconds
+                  this will make all connections login and idle for the given
+                  number of seconds, or the default idle time for the site if no
+                  number is given.
+                  fixed so that viewing files works even if the site has
+                  disconnected
+r689 2016-07-02 - fixed some site blocking special cases
+r688 2016-07-02 - added support for switching between block/allow source/target
+                  sites selection in editsitescreen
+                  removed priority feature, use block/allow sites selector
+                  instead
+r687 2016-05-29 - fixed a crash when hitting download in an empty dir or on a
+                  site that failed to list
+r686 2016-05-24 - made affil list and banned groups list case insensitive
+r685 2016-05-22 - fixed a welcome timeout edge case with slow dns resolution
+r684 2016-05-22 - added a 5-second timeout while waiting for welcome message
+                  instead of waiting indefinitely
+r683 2016-05-21 - cleaned up external globalcontext definitions
+r682 2016-05-15 - improved potential tracking
+                  rewrote transfer score calculation formula
+                  added potential info to the scoreboard screen
+                  i have no idea how this scales, please test :)
+r681 2016-05-07 - forgot to add space for the initialization vector in the
+                  outdata buffer during encryption
+r680 2016-05-07 - forgot to reduce the buffer size for encrypted data
+r679 2016-05-07 - removed one include too much
+r678 2016-05-07 - removed some backwards compatibility code
+                  this might make the first line of your data file disappear. :)
+r677 2016-05-07 - improved and refactored data file tools
+                  refactored encryption code
+                  refactored file system stuff
+r676 2016-05-05 - forgot this file, also copypasta stuff fixed
+r675 2016-05-05 - fixed a copypasta bug for local transfers
+r674 2016-05-04 - fixed a crash when nuking
+r673 2016-05-04 - fixed a crash when data is still in the work queue after
+                  disconnecting a slot
+r672 2016-05-04 - fixed a disconnect bug in ftpconn
+                  improved sitelogic request behavior
+r671 2016-05-04 - improved error handling
+r670 2016-05-02 - fixed a corner error handling case in transfermonitor
+r669 2016-05-02 - forgot edits in this file for the disable site feature
+r668 2016-05-01 - added support for active mode transfers
+                  configured through the global options screen
+r667 2016-05-01 - fixed unnecessary update of the loginscreen during login
+r666 2016-04-30 - evil edition!
+                  fixed nuke screen initial selection
+                  added quick-nuke hotkeys
+r665 2016-04-30 - added an option to disable a site from participating in spread
+                  jobs
+r664 2016-04-23 - added average speed sample total size also
+r663 2016-04-23 - added an average speed sample counter to Site
+r662 2016-04-10 - fixed a browsing init print overlap issue
+r661 2016-04-10 - added 'toggle all' to the site selection screen
+r660 2016-04-10 - fixed a bug in the redist script
+r659 2016-04-10 - added a script for creating a redistributable cbftp tarball
+r658 2016-04-10 - fixed a few tcp ssl server bugs
+                  added support for on-demand in-memory ecdsa key/cert
+                  generation that will be stored to the data file
+                  no part of cbftp uses tcp ssl server capabilities yet, though
+                  added 3rd party code for base64 encode/decode, used when
+                  storing key/cert to the data file
+r657 2016-04-03 - another time fix
+r656 2016-04-03 - fixed race condition in time functions
+r655 2016-03-28 - fixed a bug with single-letter affils/groups at the end of the
+                  line
+r654 2016-03-27 - moved core components to a separate lib that can be built
+                  standalone and used in other projects
+r653 2016-03-20 - fixed a ticker bug when resetting a race
+r652 2016-03-19 - fixed col offset issue when printing rawdata in split view
+r651 2016-03-19 - the browse screen now behaves similarly to the raw data screen
+                  until the first file list has been retrieved
+r650 2016-03-18 - fixed getaddrinfo error printout (again)
+r649 2016-03-18 - fixed getaddrinfo error printout
+r648 2016-03-13 - fixed some io locking issues
+r647 2016-03-13 - fixed browse screen updating when list finished after tabbing
+                  to the other side
+r646 2016-03-13 - fixed weird menu jumping behavior in the new race screen
+r645 2016-03-13 - fixed some error handling cases for async dns
+r644 2016-03-13 - replaced boxtag
+r643 2016-03-13 - replaced the async dns lookup solution with asynchronous tasks
+                  on separate threads
+r642 2016-03-07 - doubled the number of available slots in the signal event
+                  queue
+r641 2016-03-06 - removed thread events in the gdb script
+r640 2016-03-06 - updated gdb script to let the new signal pass through
+r639 2016-03-06 - fixed a bad ifdef
+r638 2016-03-06 - added support for asynchronous dns lookup
+r637 2016-02-27 - added support for sending remote raw commands to all sites by
+                  using * as site list
+r636 2016-02-25 - oops, missed a set of parantheses
+r635 2016-02-25 - added support for terminal bell notifications on remote
+                  commands
+r634 2016-02-23 - fixed some bad references to deleted objects
+r633 2016-02-22 - fixed the fix for a crash when resizing the terminal when
+                  viewing a file. :)
+r632 2016-02-22 - fixed a crash when resizing the terminal while being scrolled
+                  to the bottom in a viewed file
+r631 2016-02-21 - fixed a crash due to invalid list front reference
+r630 2016-02-21 - added Y (instead of just y) as acceptable yes-key in the
+                  confirmationscreen
+r629 2016-01-23 - fixed a bug in the scoreboard sorting algorithm that caused
+                  the scoreboard quality to degrade over time
+r628 2016-01-17 - fixed a crash that occurs when starting a race while standing
+                  in a skiplisted subdir of that race
+r627 2016-01-17 - dont rely on "latest race id" when going to the race status
+                  screen after starting a race as it doesn't work properly when
+                  appending to existing races
+r626 2016-01-17 - fixed a crash when starting a prepared race with 's'. How the
+                  hell did i miss this. :)
+r625 2016-01-08 - improved ui drawing performance
+r624 2016-01-08 - fixed a crash due to order dependencies on global static
+                  variable initialization
+r623 2016-01-07 - made rawdata/rawcommand screens display stuff nicely in 80x24
+                  terminals by removing unnecessary elements depending on
+                  terminal size
+                  added a "full screen" function, bound to backslash. simply
+                  toggles showing info bar + legend bar
+r622 2016-01-06 - added a new legend bar mode.
+                  restructured makefiles a bit
+                  the backend is now completely independent of the ui and can be
+                  built without it without modifying any code - just comment the
+                  ui path line in Makefile.inc. It's quite useless without ui,
+                  but the idea is that hooking up another ui should be a simple
+                  matter of making a dir with a makefile that builds a static
+                  library which inherits UIBase and creates an instance of the
+                  inheriting class and then specify that dir as ui in
+                  Makefile.inc - that's it. Plus the ui code, obviously.
+r621 2016-01-05 - missed disengaging in one of the connectfail cases
+r620 2016-01-05 - fixed a missed case of ftpconnect disconnect before deferred
+                  delete
+r619 2016-01-04 - fixed month offset bug for local file lists
+r618 2016-01-04 - used a less expensive way to delete stuff that may be referred
+                  in the work queue
+                  improved catching of unexpected data
+                  ftpconnect now uses the ftpconn data parser for figuring out
+                  the welcome message
+r617 2016-01-04 - Added support for multiple site addresses.
+                  It will try the first address, if no response within a second
+                  it will try the other ones as well. The one which responds
+                  first will be moved to the first position in the list (and
+                  used first in subsequent attempts).
+r616 2016-01-03 - improved the event framework a bit, for i.e. supporting
+                  multiple registered sockets in the same eventreceiver instance
+r615 2016-01-02 - improved transfer initiation procedure
+r614 2016-01-02 - removed a wrongful assert, I had some bad luck while thinking
+r613 2016-01-02 - added support for viewing files through the local fs browser
+r612 2016-01-01 - fixed an edge case crash where a connection returns a failure
+                  between getting locked for transfer and having the transfer
+                  actually set
+                  cleaned up transfer locking api a bit
+r611 2015-12-30 - added a site priority setting that affects transfer scoring
+                  during race
+r610 2015-12-30 - added cipher printout in the raw data log for the ftp
+                  connection of a local transfer
+r609 2015-12-30 - fixed a freshly introduced bug with data disappearing on
+                  socket close
+r608 2015-12-29 - disabled support for the SEED cipher. glftpd selects SEED for
+                  data transfers by default (and enforces server cipher
+                  preference). SEED is uncommon and inefficient. Disabling it
+                  results in using AES-based ciphers instead.
+r607 2015-12-29 - oh look, bad code :)
+r606 2015-12-29 - some io improvements
+r605 2015-12-27 - added support for using * as site list for race/prepare udp
+                  commands, will add all sites with the given section available
+r604 2015-12-25 - unnecessary slots are now disconnected when a race is locally
+                  completed
+r603 2015-12-25 - made the slotAvailable() functions in sitelogic respect locked
+                  connections due to requests
+                  removed some obsolete counters
+r602 2015-12-19 - moved stuff away from globalcontext by encapsulating ssl init,
+                  time functions, and threading in their own wrapper files
+r601 2015-12-19 - added a race reset feature in the race status screen
+r600 2015-12-13 - fixed a crash due to lingering delayed commands when adding
+                  transfer jobs
+r599 2015-11-29 - rawdatascreen + rawcommandscreen now display cp437 art
+                  properly
+r598 2015-11-28 - fixed some clang warnings
+r597 2015-11-22 - fixed a crash when starting an fxp transfer job with the same
+                  site as src/dst and only 1 slot is connected
+r596 2015-11-16 - made loginscreen (contains svn revision info) rebuild when svn
+                  info has been updated
+r595 2015-11-16 - fixed a bug with appending sites to a race through a remote
+                  command when the site string includes already added sites
+r594 2015-11-15 - added clicktrade support
+                  press s or enter on a specific prepared race in the main
+                  screen to start it, or press p from anywhere in the
+                  application to start the latest prepared race
+                  the udp format is otherwise the same as for regular races:
+                  password prepare section release site1,site2,site3
+r593 2015-11-07 - fixed a rare crash when starting a transferjob/race while a
+                  related connection was waiting to reconnect due to previous
+                  site full
+r592 2015-11-01 - moved settings load/save away from main classes into a
+                  separate SettingsLoaderSaver
+                  settings are now saved to file on site modifications and every
+                  10 minutes
+r591 2015-10-28 - reorganized browse screen code to catch some broken error
+                  handling cases
+r590 2015-10-27 - fixed line format for specific build rule for loginscreen
+r589 2015-10-27 - oops :) fixed g++ version
+r588 2015-10-27 - added compiler setting in Makefile.inc
+r587 2015-10-24 - races and transferjobs are now referred through their unique
+                  id's rather than their names which could be conflicting
+r586 2015-10-21 - added support for broken double cp437 encoding
+r585 2015-10-20 - fix for avoiding a SIGPIPE when a write socket is unexpectedly
+                  closed remotely
+r584 2015-10-15 - fixed error handling for certain socket calls
+r583 2015-10-05 - simplified the process of linking with a static openssl
+r582 2015-10-05 - replaced a nonstandard flag
+r581 2015-10-05 - rewrote makefile scripts for proper dependency tracking, make
+                  clean no longer needed :)
+r580 2015-10-04 - check if ts exists before giving to race
+r579 2015-10-04 - readded transfer attempt tracking for successful transfers as
+                  well
+r578 2015-10-04 - revamped failed transfer tracking, now based on source+target
+                  combo instead of just either
+                  also retrying failed transfers before timeouting a race
+r577 2015-09-20 - more file size fixes
+r576 2015-09-20 - transferstatus now using long long for file size
+r575 2015-09-14 - new project name :)
+r574 2015-09-14 - added support for remote raw commands.
+                  this breaks the previous format for remote commands.
+                  the new formats are:
+                  password race section release site1,site2,site3
+                  password raw site1,site2,site3 command
+r573 2015-09-12 - added skiplist match caching
+r572 2015-09-12 - added site ranking + tolerance
+r571 2015-09-12 - replaced transfer error codes with an enum
+r570 2015-08-30 - moved esc bind to its proper location
+r569 2015-08-26 - added ability to switch back to the latest browse screen state
+                  from the main screen
+r568 2015-08-26 - made sure sitelogic wont report transfer error on a transfer
+                  that is supposedly removed already
+r567 2015-08-25 - added check + kill for dead transfers
+r566 2015-08-25 - reset request on disconnect
+r565 2015-08-25 - set filelist changed flag on finished upload
+r564 2015-08-24 - subpaths will no longer be considered complete as long as they
+                  have files tagged as uploading
+r563 2015-08-24 - added support for forcing binary mode on old-ass sites
+r562 2015-08-23 - fixed scoreboard radix count reset
+                  various performance improvements through less string copying
+r561 2015-08-23 - added a banned groups list for each site
+r560 2015-08-23 - oops: missed this one
+r559 2015-08-23 - improved connection locking method
+r558 2015-08-23 - improved the request system
+                  requests now lock a connection in the same way a transfer does
+r557 2015-08-13 - fixed a bug when enlarging the scoreboard
+r556 2015-08-13 - optimized engine loop
+                  replaced scoreboard sorting algorithm with base2^16 single-
+                  pass Radix sort
+r555 2015-08-10 - greatly improved signal handling
+r554 2015-08-04 - fixed weird polling behavior
+r553 2015-08-04 - fixed weird polling behavior
+r552 2015-08-04 - fixed weird polling behavior
+r551 2015-08-03 - size aggregation should not consider failed transfers
+r550 2015-08-03 - transfer jobs should now work properly on (partially) existing
+                  targets
+r549 2015-07-15 - fixed a possible assert crash when using LIST
+r548 2015-06-14 - fixed a silly iterator bug :)
+r547 2015-06-14 - ssl locking callbacks should be registered before initializing
+                  the lib and ctx
+r546 2015-06-14 - forgot this file
+r545 2015-06-14 - initial SSL_connect call moved from the worker to the io
+                  thread (where all other SSL_ calls occur)
+r544 2015-06-14 - fixed the last clang warnings :)
+r543 2015-06-14 - oops, typo
+r542 2015-06-14 - fixed even even more clang warnings
+r541 2015-06-14 - fixed even more clang warnings
+r540 2015-06-14 - fixed some more clang warnings
+r539 2015-06-13 - fixed some clang warnings
+r538 2015-06-13 - fixed a cygwin build warning
+r537 2015-06-13 - fixed a cygwin build error
+r536 2015-06-12 - oops: wrong include for epoll
+r535 2015-06-12 - added polling system fallback to regular poll.h. should now
+                  build with cygwin etc
+r534 2015-06-10 - added positioning and encoding info in viewfilescreen
+r533 2015-06-08 - found a more suitable black square replacement for nfo
+                  conversion
+r532 2015-06-08 - switched to ncursesw instead of ncurses, for displaying
+                  unicode characters
+                  the internal viewer now displays nfo files in a neater way
+                  through character conversion for common nfo chars
+r531 2015-05-27 - reset owner/group when parsing a broken stat line
+r530 2015-05-27 - oops
+r529 2015-05-27 - made stat line parsing more robust against unusual outputs
+r528 2015-05-14 - initsplitupdate didn't account for having the other side
+                  closed
+r527 2015-05-11 - setting info text on opening local browse screen
+r526 2015-05-11 - forgot to remove this file, it has been renamed
+r525 2015-05-11 - fixed another warning that only shows when building with -Os
+r524 2015-05-10 - fixed a funny warning that only shows when building with -Os
+r523 2015-05-10 - added support for local fs browsing in the browsescreen
+                  added support for upload jobs
+                  added iomanager support for progressive uploading
+                  fixed a bug with the browsescreen main stealing the 't' key
+r522 2015-05-02 - fixed uninitialized filelist pointer
+r521 2015-05-01 - fixed an uninitialized bool
+r520 2015-04-28 - fixed the hack from last commit
+r519 2015-04-28 - added a hack for some zipscripts using .missing instead of
+                  -missing
+r518 2015-04-28 - sfv/nfo prioritized on transfer jobs
+r517 2015-04-28 - can no longer add sites with both upload+download disabled to
+                  a race
+r516 2015-04-27 - added support for MS-DOS file listing format
+r515 2015-04-27 - fixed a bug in the transferjob almostdone logic
+r514 2015-04-27 - fixed pgdn out of bounds bug in browsescreenselector
+r513 2015-04-27 - added support for split-screen site browsing and rudimentary
+                  support for FXP transfer jobs
+r512 2015-04-24 - fix for crash in selectsitesscreen when pressing done without
+                  selecting any sites
+r511 2015-04-20 - using static_cast instead of C casts
+r510 2015-04-19 - pointer semantics
+r509 2015-04-19 - Pointer no longer needs complete class declaration
+                  moved some includes away from header files
+r508 2015-04-18 - Race and TransferJob are now using Pointers everywhere.
+                  additional ui code cleanup
+r507 2015-04-18 - loginscreen text now depends on Makefile.inc
+r506 2015-04-18 - using smart pointers instead of new/delete everywhere in the
+                  ui
+r505 2015-04-18 - created a makePointer() function to avoid direct new calls in
+                  pointer-using code
+r504 2015-04-18 - fixed slot count reduction while transfers ongoing
+r503 2015-04-17 - the browsescreen is now using menuselectoption adjustablelines
+                  for drawing its file list. much neater!
+r502 2015-04-16 - fixed file counting bug
+r501 2015-04-14 - moved polling mechanism selection ifdef into polling.h
+r500 2015-04-13 - added <> to chardraw
+r499 2015-04-08 - using timereference in siterace instead of ctimesec
+r498 2015-04-07 - added backspace code 127
+r497 2015-04-06 - fixed various warnings when building with clang
+                  restructured the ui thread setup a bit
+r496 2015-04-06 - removed unnecessary dependency + a related define
+r495 2015-04-06 - EV_RECEIPT is apparently not useful in this case. :)
+r494 2015-04-06 - various fixes for building on BSD (and for not using
+                  deprecated stuff)
+r493 2015-04-06 - fixed ifdef typo
+r492 2015-04-06 - added support for Apple GDC semaphores because Apple are ultra
+                  fags
+r491 2015-04-05 - replaced 'kevent' with 'struct kevent' for whining reasons
+r490 2015-04-05 - corrected destructor name in pollingkqueue :)
+r489 2015-04-05 - thread id callback is bitching, doing a cast instead
+r488 2015-04-05 - changed to an appropriate return type for the thread id
+                  callback
+r487 2015-04-05 - added support for the kqueue polling mechanism when building
+                  on bsd systems
+r486 2015-04-04 - encapsulated polling mechanism
+r485 2015-04-01 - fixed a stupid time formatting bug
+r484 2015-03-29 - removed TODO file since it's not being used anyway
+r483 2015-03-28 - fixed default path bug
+r482 2015-03-28 - delete option on race status screen is now accessible in all
+                  states except running
+r481 2015-03-28 - trying a new main screen concept. Facelift :)
+                  added screens for displaying all races / all transfer jobs
+r480 2015-03-27 - complete percentages in race are now based on total file size
+                  rather than total file count
+                  fixed total file size calculation bug in FileList
+r479 2015-03-24 - fixed broken tickpoke on delete
+r478 2015-03-24 - forgot this. :)
+r477 2015-03-23 - improved file size tracking during races
+                  Race is now aware of the expected final size
+                  various internal improvements
+r476 2015-03-23 - addTransferDetails now takes the table/mso as arg
+r475 2015-03-18 - oops: iterator increase fail
+r474 2015-03-18 - fixed iterator invalidation bug in FileList::cleanSweep
+r473 2015-03-15 - added udp toggle from mainscreen
+r472 2015-03-14 - now preventing upload of the same file more than 5 times, even
+                  on success
+r471 2015-03-14 - new attempt at parsing a statline with all possible bad
+                  formats
+r470 2015-03-14 - fixed off-by-one in trim
+r469 2015-03-14 - fixed stat line parsing where user/group is empty
+r468 2015-03-12 - local transfer files are no longer opened for writing until
+                  data has arrived
+r467 2015-03-12 - fixed a busy socket bug
+r466 2015-03-06 - fixed error messages during view file
+r465 2015-03-02 - added support for aborting transfer jobs
+r464 2015-02-28 - forgot these :) they're not used yet
+r463 2015-02-28 - added function for deleting a race on all sites involved
+r462 2015-02-28 - fixed uninitialized bool in transferstatus
+                  fixed last selection pointer becoming invalid when deleting a
+                  section
+r461 2015-02-27 - added util file for various helper functions
+                  added string trim function in util
+                  trimming udp string
+r460 2015-02-27 - made affil list field longer
+r459 2015-02-27 - the default network interface setting has apparently been
+                  hidden for quite a while... :)
+r458 2015-02-25 - relaxed transfer attempt failure restriction a bit
+r457 2015-02-25 - correct error message when trying to view a text file when no
+                  download slots are available
+r456 2015-02-24 - disconnecting a connection manually now removes any transfers
+                  properly
+                  fixed marking of failed transfers
+r455 2015-02-23 - slight refactoring on transfer locking methods
+r454 2015-02-23 - transfer slots now need to be logged in to be handed out
+                  some var renaming
+r453 2015-02-21 - apparently needed these too :)
+                  make sure new transfer jobs are initially listed asap
+r452 2015-02-21 - fail transfer on site full
+                  updated transferjob logic
+r451 2015-02-20 - more robust list entry time stamp parsing
+r450 2015-02-17 - removed obsolete method
+r449 2015-02-17 - bad assignment in Site::copy
+r448 2015-02-10 - fixed max possible slots value for fxp transfer jobs
+r447 2015-02-03 - fixed some transferjob cases with 0-byte files
+r446 2015-02-03 - added backend transferjob status structures
+                  added useful info in the transferjobstatusscreen
+                  improved transferjob complete detection
+r445 2015-01-31 - removed unused method declaration in transfermanager
+r444 2015-01-31 - added transfer state info in the transferscreen
+r443 2015-01-26 - fixed assignment from uninitialized pointer
+                  handle failure better in viewfilescreen
+r442 2015-01-25 - file list separators should survive a dir refresh
+r441 2015-01-25 - added transfer info in the viewfilescreen
+r440 2015-01-21 - oops: half-committed some newer code, here's the rest
+r439 2015-01-21 - bad score calculation in some extreme cases
+r438 2015-01-19 - allow copy construction of uninitialized pointers
+r437 2015-01-19 - removed irrelevant legend text entry in the main screen
+r436 2015-01-19 - added backend support for download jobs
+r435 2015-01-16 - improved PROT logic
+r434 2015-01-16 - oops: missed an exclamation point in last commit
+r433 2015-01-16 - added explicit PROT C since some ftpd's apparently default to
+                  PROT P
+r432 2015-01-16 - oops: bad comparison in last commit
+r431 2015-01-16 - sending PBSZ 0 if PROT P asks for it
+r430 2015-01-16 - fix for crash at target error on LIST
+r429 2015-01-11 - fix for skiplist default entries not showing up with a new
+                  data file
+r428 2015-01-07 - disable ui file list separators on new list
+r427 2015-01-07 - hard clear of delayed command on manual disconnect request
+r426 2015-01-07 - persisting resets can be cleared in some cases
+r425 2015-01-07 - delayed command now supports the possibility of persisting a
+                  reset
+r424 2014-12-23 - skipping-info accuracy in the browsescreen improved
+r423 2014-12-22 - resolved race status grid tagging troubles on certain file
+                  naming patterns
+r422 2014-12-22 - fixed score calculation bug resulting in 0 points total for
+                  certain conditions
+r421 2014-12-13 - menusections should unset focus when initializing
+r420 2014-12-13 - use size_t instead of int for str.find to avoid wall warnings
+r419 2014-12-13 - fixed skiplist parent dir filtering
+                  slashes are no longer matched by *
+r418 2014-12-02 - improved complete detection for non-sfv directories during
+                  race
+r417 2014-11-23 - improved error handling for local transfers in the transfer
+                  system
+r416 2014-11-22 - added udp bind failure detection and retry
+r415 2014-11-14 - fix for crash on failed download
+r414 2014-11-08 - iomanager no longer exposes real sockfds, an id number is
+                  assigned instead
+r413 2014-10-28 - generating the AES key with SHA256 instead of just appending
+                  zeroes
+r412 2014-10-23 - fixed filelist reset bug when cwd fails in browsescreen
+r411 2014-10-22 - SiteLogic::setNumConnections may disconnect the wrong conn
+r410 2014-10-22 - FTPConns will now disconnect when deleted
+r409 2014-10-21 - fixed delayedcommand setting in some failure cases
+r408 2014-10-20 - fixed dual passive calls for transfer during certain
+                  conditions
+r407 2014-10-20 - fixed proper removal of delayed commands
+                  added various state safeguards
+r406 2014-10-18 - fixed redraw on command to racestatusscreen
+r405 2014-10-15 - fixed a bug with starting a race which a connection is already
+                  cwded into a subdir of
+r404 2014-10-13 - failed transfers will now result in avgspeed being reduced for
+                  that site pair
+r403 2014-10-11 - fix for defaultallow not being compared properly
+r402 2014-10-11 - fix for starting races with invalid target names
+r401 2014-10-11 - missed a line in last commit
+r400 2014-10-11 - added scope to the skiplist
+                  can now block races from starting with the allround scope
+r399 2014-10-11 - improved skiplist
+r398 2014-10-09 - added script for starting through gdb
+r397 2014-10-08 - fixed socket timeout
+r396 2014-10-05 - forgot this file
+r395 2014-10-05 - race complete detection now requires an additional 5 second
+                  static period on a filelist before considering the subdir
+                  complete
+r394 2014-10-03 - minor ui layout changes
+r393 2014-10-02 - added some default skiplist filters
+r392 2014-10-02 - made sure that iomanager doesnt accidentally recreate
+                  socketinfo entries
+                  encapsulated locks and semaphores in separate classes
+r391 2014-09-28 - added openssl threading callbacks
+r390 2014-09-28 - fix for possible transfermonitor call spillover during failed
+                  cwd
+r389 2014-09-25 - changed transfer abort method to PASV
+r388 2014-09-20 - added the "add site to race" function
+                  added groundwork for local download jobs
+                  fixed iterator destroying bug in tickpoke
+r387 2014-09-19 - made sure locking in iomanager covers ssl calls
+r386 2014-09-14 - fixed deadlock on ssl error
+r385 2014-09-14 - fixed scoreboard sorting bug leading to sporadic crashes when
+                  engaging a transfer
+r384 2014-09-10 - fixed race conditions in iomanager
+r383 2014-09-10 - improved socket resource handling and management
+r382 2014-09-06 - use more screen area in the select sites screens
+                  removed obsolete key bind in rawdatascreen
+r381 2014-09-05 - fixed erased iterator bug
+r380 2014-08-28 - fixed crash when using goto mode with separators
+r379 2014-08-24 - added catch for no route to host error
+r378 2014-08-23 - handle failed connection attempts better
+r377 2014-08-16 - replaced numerical states with defines in ftpconn
+r376 2014-08-14 - fixed iterator comparison bug in filelist
+r375 2014-08-11 - reset delayedcommands/idletime when issuing sitelogic requests
+r374 2014-08-10 - separated the blocked pairs feature into both directions
+r373 2014-08-10 - const correctness for all methods
+                  removed some dead method declarations
+r372 2014-07-25 - redirect stdout/stderr to /dev/null instead of closing when
+                  spawning an external viewer, to increase application
+                  compatibility
+r371 2014-07-25 - updated legend text for quick jump mode
+r370 2014-07-25 - small behavioral change for the quick jump feature
+r369 2014-07-25 - added multi-letter quick jump in the browse screen
+r368 2014-07-25 - added quick jumping in the main screen
+r367 2014-07-25 - fixed slot tracking bug during reconnect because of error
+r366 2014-07-25 - added transferstatus information for local transfers
+r365 2014-07-25 - fixed transfer handling when getting disconnected
+r364 2014-07-25 - woops forgot this file
+r363 2014-07-25 - added list locking to avoid some connection reuse issues
+                  added locking info in the site status screen
+r362 2014-07-22 - fixed some LIST issues
+r361 2014-07-21 - slight rework of the connection handling
+r360 2014-07-02 - made address field longer
+r359 2014-06-20 - dont push transferstatus history for transfer that don't have
+                  any
+r358 2014-06-20 - quick for not trying to poke transferstatus on LIST transfer
+r357 2014-06-20 - added the transferstatus structure to keep track of transfers
+                  moved size formatting functions from uifile to globalcontext
+                  added a completely dynamically resizable menu subsystem
+                  extension
+                  added the transfers screen aka screen #24
+r356 2014-06-12 - added some hard-crashing asserts on unwanted cases
+r355 2014-06-08 - added exception case for final size estimation during races
+                  with only 2 sites
+r354 2014-06-07 - handle failing miscellaneous commands better in conjunction
+                  with transfer locks
+r353 2014-06-07 - fixed return on activeReady
+r352 2014-06-06 - added some missing setInfos in the browsescreen
+r351 2014-06-05 - fixed full reset of MenuSelectOption where needed
+r350 2014-06-03 - fixed menuselectoption clearing bug + clear in newracescreen
+r349 2014-05-30 - fixed silly recursion loop bug
+r348 2014-05-30 - added missing include required on some systems
+r347 2014-05-30 - removed various obsolete locking mechanisms
+                  replaced queue in workmanager with blockingqueue
+r346 2014-05-30 - reworked ui threading model, moving data collection work to
+                  the worker thread instead to avoid race conditions
+r345 2014-05-03 - oops: flipped active/passive in last commit
+r344 2014-05-03 - slight refactoring in connstatetracker
+r343 2014-05-02 - better handling of "resource temporarily unavailable" in
+                  iomanager
+r342 2014-04-27 - fixed transfer slot locking bug
+r341 2014-04-26 - improved transfer error handling
+r340 2014-04-25 - detailed SSL error printing
+r339 2014-04-25 - added some ssl error printing
+r338 2014-04-25 - added scoreboard refresh dropping during worker overload
+r337 2014-04-22 - fixed subdir complete checker nullptr deref bug
+r336 2014-04-15 - fixed memcpy overlap bug during decryption
+r335 2014-04-13 - additional check for SSCN support
+r334 2014-04-13 - added support for SSCN
+r333 2014-04-09 - forgot to save the sslfxp setting when leaving the global
+                  options screen
+r332 2014-04-06 - support for "return to browsing" when starting a race by
+                  pressing S instead of s
+r331 2014-04-05 - fixed nfo viewing bug when the last line did not end with \n
+r330 2014-04-04 - missed a case action in the mixchar switch
+r329 2014-04-04 - enhanced silly boxdraw feature. Now supports entire alphabet +
+                  lowercase + numbers. Configure in Makefile.inc
+r328 2014-04-04 - added a silly but awesome feature to the login screen :)
+r327 2014-04-03 - fixed maxfilesize usage in Engine::calculateScore, originally
+                  problematic because maxfilesize always presents size from dir
+                  with many files if possible
+r326 2014-04-01 - show existing files as a '.' in the racestatusscreen for
+                  clarity
+r325 2014-03-20 - catching some mkd fail cases to avoid reconnect
+r324 2014-03-17 - fixed crash when starting race with less than 2 sites
+                  fixed pgup/pgdn in newrace and selectsite
+                  changed default sites selected behavior on newrace
+r323 2014-03-14 - support for LIST added.
+                  transfer command sequence optimized
+r322 2014-03-11 - support for ioFTPD STAT return code + reverted changes from
+                  r321
+r321 2014-03-11 - stripped \r from ftpconn reads completely
+r320 2014-03-11 - fixed raw command request missed define rename
+r319 2014-03-11 - fixed EOL for password command aswell, forgot it had a
+                  separate call
+r318 2014-03-11 - fixed command EOL characters for windows ftpd compatibility
+r317 2014-03-03 - fixed owned-file-comparison for usernames longer than 8 chars
+                  (again, better)
+r316 2014-03-03 - fixed owned-file-comparison for usernames longer than 8 chars
+r315 2014-03-02 - added support for disabling specific site pairs in races
+r314 2014-02-28 - fixed scoring issue with owned file count in a FileList
+                  becoming less than 0
+r313 2014-02-23 - Registering as pokereceiver before logging the first race
+                  start to ensure that the race start message is displayed as an
+                  event
+r312 2014-02-23 - made sure an appropriate avgspeed is used in score calculation
+r311 2014-02-22 - optimized scoreboard handling
+r310 2014-02-21 - tracking mkdir attempts and visited dirs to avoid re-mkdir on
+                  nuke and delete / mkdir block spam
+r309 2014-02-20 - stopping races after 2 minutes of inactivity
+r308 2014-02-13 - updated TODO
+r307 2014-02-13 - added ssl policy setting instead of just force enable
+r306 2014-02-13 - viewing addr/port in the same field in editsitescreen
+r305 2014-02-13 - should still check against already added races
+r304 2014-02-13 - fixed broken site duplication check on newrace
+r303 2014-02-13 - fixed ignoring invalid passwords on udp command
+r302 2014-02-11 - replaced StringPair with std::pair
+r301 2014-02-11 - fixed weird output for chars above 128
+r300 2014-02-11 - added missing include that only shows on some systems
+r299 2014-02-09 - fixed crash on failing local transfer
+r298 2014-02-05 - more robust file name tagging in the race status screen, now
+                  works properly with file names ending with .rar, .mp3 etc
+r297 2014-02-05 - improved expected file size estimation formula
+r296 2014-02-04 - displaying eventlog events for a short time in the legend bar
+r295 2014-01-26 - bug: using uninitialized variable for null comparison
+r294 2014-01-26 - slight refactoring
+r293 2014-01-26 - added some more media formats and made sure format comparisons
+                  are made in lowercase
+r292 2014-01-25 - setting legend text properly in the viewfilescreen
+r291 2014-01-25 - forgot to add deleting of temporary files when using the
+                  internal viewer
+r290 2014-01-25 - added support for viewing files in external viewers
+r289 2014-01-23 - fixed a few bugs related to deleting/wiping files
+r288 2014-01-23 - added support for removing a site from race and aborting a
+                  race
+r287 2014-01-23 - fixed silly null dereference at raw command from an empty dir
+r286 2014-01-11 - changed ssl compatibility version
+r285 2014-01-11 - added "insert selection" feature to rawcommandscreen
+r284 2014-01-11 - added nuke support directly from the browse screen
+r283 2014-01-11 - added a missing include that somehow isn't needed on most
+                  systems
+r282 2013-12-27 - fixed request type identification bug introduced in last
+                  commit
+r281 2013-12-27 - added some transfer backend code and implemented the viewfile
+                  feature
+r280 2013-12-15 - fixed bad separator algos for other sorting methods
+r279 2013-12-15 - added a separator feature in the browse screen
+r278 2013-12-12 - forgot to update legend text for the delete command
+r277 2013-12-12 - support for deleting files and folders, recursive
+r276 2013-12-07 - support for tcp server sockets, backported from ftpsslrelay
+r275 2013-11-29 - dont bind server sockets to default interface, may cause
+                  problems and gives little benefit
+r274 2013-11-27 - iomanager needs to be configured before remotecommandhandler
+r273 2013-11-27 - stupid bugfix for some copypasta mess
+r272 2013-11-27 - added support for setting default network interface (in the
+                  global options screen)
+r271 2013-11-27 - ifdef in ui to support ncurses 5.6 (and maybe earlier)
+r270 2013-11-25 - added support for command history (through up/down arrow) in
+                  the raw command input fields
+r269 2013-11-24 - improved raw command issue code
+                  support for connection-bound sitelogic requests
+r268 2013-11-23 - fixed request connection selection possibly picking thread in
+                  use
+r267 2013-11-17 - fixed bug with overridden method that wasn't virtual
+r266 2013-11-17 - don't sweep files that are being uploaded (as they may not
+                  show yet)
+r265 2013-11-17 - enhanced flow for failing transfers, may solve some related
+                  bugs
+r264 2013-11-05 - dropping some unnecessary base classes
+r263 2013-11-03 - removed linkflags parameter from datafilecat/datafilewrite to
+                  allow simpler building with static openssl
+r262 2013-11-03 - forgot this class, will be used for recursive delete
+r261 2013-11-03 - added support for connecting through SOCKS5 proxies
+                  added a convenient menu object type: textarrow
+                  added support for showing/hiding menu objects
+                  added basic delete functionality to sitelogic, not accessible
+                  yet though
+r260 2013-11-01 - oops: forgot to make method public
+r259 2013-11-01 - reorganized some includes
+r258 2013-11-01 - support for adding the same race several times, will append
+                  new sites onto the old race entry
+r257 2013-10-27 - added missing includes
+r256 2013-10-26 - added some destructor/teardown code
+r255 2013-10-26 - fixed some cppcheck warnings
+r254 2013-10-26 - using defines in the workmanager loop
+r253 2013-10-21 - added DELE methods
+                  fixed state bug on failing retr/stor
+r252 2013-10-21 - made sure that the root of a race is always displayed in the
+                  race status screen
+r251 2013-10-20 - fixed some sizes / filecounts when using removeFile()
+r250 2013-10-20 - added support for wiping through the browsescreen
+r249 2013-10-18 - added support for the esc key in all screens
+r248 2013-10-18 - prevention of weird behavior from unexpected transfer
+                  responses
+r247 2013-10-17 - another forgotten include :/
+r246 2013-10-17 - added forgotten include
+r245 2013-10-17 - removed pointless cwd statements
+r244 2013-10-17 - additional debugging messages
+r243 2013-10-16 - added some debugging output
+r242 2013-10-14 - added more log events
+r241 2013-10-14 - oops: eventlog should be available regardless of mainscreen
+                  selection
+r240 2013-10-14 - added some useful logging entries
+r239 2013-10-14 - added the event logging facility. No events logged yet though
+r238 2013-10-13 - added some checks for new races to avoid crashing from bad udp
+                  calls
+r237 2013-10-12 - handle failed cwd on request properly
+r236 2013-10-12 - replaced some lost sitefull/simultaneous-max handling
+                  improved login tracking greatly
+r235 2013-10-11 - fix for displaying the percent-character properly
+r234 2013-10-10 - fixed file-skip-notifier in the browse screen
+r233 2013-10-03 - cleaned up and reorganized all includes. now including in
+                  cpp's if possible
+r232 2013-10-03 - using defines for connection types instead of just numbers
+r231 2013-09-14 - ui event queue switched to predefined ints instead of strings
+r230 2013-09-07 - made links equal to dirs in the ui sorting algo
+r229 2013-08-28 - fixed null pointer deref
+r228 2013-08-28 - additional transfer-tracking fixes
+                  added string creation method in globalcontext for gdb use
+r227 2013-08-28 - added support for symlinks.
+r226 2013-08-28 - disable processing flag on retr/stor error
+r225 2013-08-27 - fixed proper file transfer flag resets on error
+r224 2013-08-27 - added support for showing/hiding small dirs in the race status
+                  screen
+                  fixed a weird bug because of a forgotten iterator find check
+r223 2013-08-27 - fixed subdir file tag alignment
+r222 2013-08-27 - fixed a subdir registering bug caused in r208
+r221 2013-08-27 - fix for the last file in a race not getting its resulting size
+                  updated properly
+r220 2013-08-27 - complete detector shouldn't use premature guesses
+r219 2013-08-27 - starting a race from ui goes directly to the race status
+                  screen
+r218 2013-08-27 - added transfer data in the race status screen. looks awesome!
+r217 2013-08-27 - added some backend functions to estimate which files that are
+                  part of a race and used these in the race status screen
+r216 2013-08-23 - added some info in the top of the browse screen
+r215 2013-08-22 - added a "slider" (that can't be dragged) on the right side of
+                  the browsescreen when the filelist is larger than the number
+                  of rows
+r214 2013-08-21 - pthread_setname_np covered in ifdef's for compatibility with
+                  older glibc versions
+r213 2013-08-21 - touching target file earlier in the transfer procedure to
+                  avoid multiple transfer attempts on the same file
+                  simultaneously
+r212 2013-08-20 - fixed dns resolution fail crash
+r211 2013-08-20 - skiplist is now case insensitive
+r210 2013-08-20 - changed default race mode to "race" instead of "spread". will
+                  create on-the-fly options for this later
+r209 2013-08-19 - ignore . and .. file listing entries
+r208 2013-08-19 - skiplisting also prevents mkdir (and cwd into during race) of
+                  skipped stuff
+r207 2013-08-19 - made complete-detector account for skiplisted files
+r206 2013-08-19 - experimental patch part #3. finally working!
+r205 2013-08-19 - experimental patch part #2
+r204 2013-08-18 - experimental patch for local-format PASV response (x,y,z)
+r203 2013-08-18 - added support for changing encryption key
+r202 2013-08-18 - fixed key scrambling bug when changing encryption key
+r201 2013-08-17 - added base path setting per site
+r200 2013-08-16 - showing skip status in the browse mode
+r199 2013-08-16 - added affil list for sites to avoid uploading expected pres
+r198 2013-08-16 - added support for modifying text input fields with
+                  home/end/del/left/right
+r197 2013-08-14 - added allow upload/download buttons per site.
+r196 2013-08-13 - removed obsolete class and references
+r195 2013-08-13 - STAT fix for ftpd's that don't follow RFC 959
+r194 2013-08-12 - added support for non-ssl sites via site option (AUTH SSL
+                  checkbox)
+r193 2013-08-12 - added skiplist, accessible through global options
+r192 2013-08-12 - unified some duplicate (and broken in one of the places) code
+r191 2013-08-12 - fixed button alignment flaw
+r190 2013-08-09 - added missing include / declaration for globalcontext
+r189 2013-08-09 - fixed broken transfer speed pushing
+r188 2013-08-09 - woops, forgot this file
+r187 2013-08-09 - proper tracking of slots during failed transfers. skipping
+                  abort-stuff for now
+r186 2013-08-09 - missing some connection number edits
+r185 2013-08-07 - fixed inversed broken pasv control
+r184 2013-08-07 - further file transfer fail stability
+r183 2013-08-07 - handling of failed transfers. not optimal, need to fix
+                  stor->retr flow (retr may hang if stor fails)
+r182 2013-08-07 - extended sitelogic locking mechanism, should solve a bunch of
+                  crashes
+r181 2013-08-07 - added sitelogic thread locking to avoid some race conditions.
+                  locking should be added to all places that make sitelogic
+                  access... will do later.
+r180 2013-08-07 - fixed login status clearing bug in the sitestatusscreen
+r179 2013-08-07 - changed some long ifelse-clausules into switch cases
+r178 2013-07-30 - reimplemented support for SSL transfers
+r177 2013-07-30 - changed default transfer behavior to active download / passive
+                  upload
+r176 2013-07-30 - fixed invalid circular buffer position picking calculation
+r175 2013-07-29 - complete rewrite of the threading and socket model.
+                  now using asynchronous sockets for everything, and a fixed
+                  number of threads for the entire application.
+r174 2013-05-08 - removed some unused includes
+r173 2013-05-07 - extended iomanager to handle sockets with proper data
+                  management
+                  remotecommandhandler is now using the iomanager
+r172 2013-05-02 - first prototype of the workmanager facility. used for keyboard
+                  input and ticks, so far
+r171 2013-04-07 - added the EventReceiver event base class, for upcoming thread
+                  system remodeling
+                  tickpoke is now calling a method in a base class
+                  (EventReceiver) of its targets instead of posting to a
+                  semaphore
+                  potentialtracker thread was made obsolete and removed because
+                  of the above
+r170 2013-04-02 - more renaming awareness
+r169 2013-04-02 - site renaming awareness in depending objects
+r168 2013-04-02 - fixed thread not stopping on object destroy
+r167 2013-04-02 - sorting site list on site edit
+r166 2013-03-30 - corrected data file information format about legend bar
+r165 2013-03-29 - removed obsolete method header
+r164 2013-03-29 - fixed bogus ticker delay
+r163 2013-03-29 - added support for home/end keys
+r162 2013-03-29 - forgot to reset currentpath var causing weird behavior on
+                  reconnect
+r161 2013-03-27 - added option to disable the legend bar
+r160 2013-03-27 - added support for specifying max idle time on a per-site and
+                  new-site-default basis
+r159 2013-03-26 - fixed some wall warnings
+r158 2013-03-26 - ignoring files with spaces in the name
+r157 2013-03-26 - support for initiating races via remote commands!
+r156 2013-03-26 - ftpthread now connecting to newly set ip/ports instead of
+                  reusing old ones
+r155 2013-03-26 - fixed last commit, i'm an idiot
+r154 2013-03-26 - expanded section entries on the editsitescreen
+r153 2013-03-26 - added missing includes that break certain compiler combos
+r152 2013-03-22 - added the Global Options screen
+                  added default parameters for new site on the global options
+                  screen
+                  added stub for remote command handling with settings in the
+                  global options screen
+r151 2013-03-14 - made it impossible to leave site area with pgup/pgdn
+r150 2013-03-14 - main thread name updated, behavior previously misunderstood
+r149 2013-03-14 - automatically sorting the site vector by name
+r148 2013-03-14 - added scrolling in the site list in the mainscreen (and
+                  pgup/pgdn)
+r147 2013-03-11 - updated date stamp estimation formula
+r146 2013-03-09 - added the info window in the ui, incl slight modification of
+                  all screens. only labels added for now, the text area is a
+                  later problem.
+                  added peeking on the stdin stream to avoid getting stuck at
+                  getch().
+                  some ui code refactoring, still ugly though
+r145 2013-03-08 - added linecount makefile option
+r144 2013-03-08 - fixed race selection code; now alternates between races in
+                  appropriate order
+r143 2013-03-07 - subdir info in the race status screen
+r142 2013-03-05 - fixed off-by-one error in the log output row selection
+r141 2013-03-05 - removed unwanted cursor
+r140 2013-03-05 - added raw command window. accessible from mainscreen,
+                  sitestatusscreen, browsescreen
+r139 2013-03-04 - oops, too long thread name
+r138 2013-03-04 - added thread names for debugging
+r137 2013-03-04 - semantics again
+r136 2013-03-04 - english semantics
+r135 2013-03-04 - added datafilewrite tool
+r134 2013-02-27 - added blinking cursor on the raw command line
+r133 2013-02-27 - added support for dir refresh (F5)
+r132 2013-02-27 - added raw command support in the raw data screen
+r131 2013-02-26 - avoid calling subpathcomplete on every refresh, check first
+r130 2013-02-26 - made sure ftpthreads are disconnected when they arent needed
+                  anymore
+r129 2013-02-25 - oops: obvious null dereference fixed
+r128 2013-02-25 - ftpthread switches race if possible when having refreshed the
+                  same race x (5) times in a row
+r127 2013-02-24 - better awareness of failing transfers
+                  fixed ugly crash when transferred file was deleted on the
+                  source
+r126 2013-02-24 - reporting of sfv files to Race
+r125 2013-02-18 - fixed lastmodified sorting formula
+r124 2013-02-18 - fixed window auto updating.
+                  added (broken) embryo for the race status screen
+r123 2013-01-27 - missing legend entry
+r122 2013-01-27 - reset protected mode on reconnect
+r121 2013-01-24 - added section selection on the new race screen
+r120 2013-01-21 - method renamed to more describing name
+r119 2013-01-21 - fix again: multiple code paths for mkdiring, removed
+r118 2013-01-21 - fix stupid bug that causes bad mkdirs (used full path instead
+                  of release name)
+r117 2013-01-19 - fixed stupid iteration bug when writing avgspeeds
+r116 2013-01-18 - added support for scrolling upwards / view history in the
+                  console log windows
+r115 2013-01-17 - added support for SSL FXP.
+r114 2013-01-16 - fixed timestamp parsing bug causing files to get lastmodified
+                  stamps in the future
+r113 2013-01-16 - added complete detection for multiple dirs in a race. somewhat
+                  unstable overall, iron out bugs later...
+r112 2012-12-18 - Support for subdirs in races!
+                  complete-checker intentionally broken for now.
+r111 2012-12-18 - fixed stupid race condition
+r110 2012-12-18 - removed duplicate iterator methods
+r109 2012-12-16 - improved handling of race focus, refresh looping etc in
+                  sitethread
+                  fixed thread safety issue in globalcontext
+r108 2012-12-14 - appropriate behavior when changing the number of logins/slots
+                  on an existing site
+                  possibility to set logins/slots to 0, aka infinite, aka 10 :)
+r107 2012-12-05 - race-complete-detection!
+                  logging out afterwards still a bit inconsistent. later
+                  problem.
+r106 2012-11-26 - added current races (selectable) to the mainscreen
+r105 2012-11-18 - refactored menuselectsite to the new ui infrastructure
+r104 2012-11-18 - added the new race-window with support for starting races
+                  through the ui
+                  still no way to see what's going on, though :)
+r103 2012-11-12 - shortened the length of the size field in the browsescreen by
+                  1 char :p
+r102 2012-11-12 - forgot this file :)
+r101 2012-11-12 - added nice size printing in the browsescreen
+                  enlonged a bunch of too small ints and added appropriate
+                  methods
+r100 2012-11-05 - added "bind to section" function in the browsescreen
+                  all path handling is now expected to be without slash (/) at
+                  the end
+r99 2012-11-04 - moved ui screens into separate directory
+r98 2012-11-04 - spelling fix, lol
+r97 2012-11-04 - added password practice info on the new key screen :)
+r96 2012-10-28 - fixed segfault when deleting site because the sitemanager's
+                 tickpoke entry wasn't removed. Leaked threads (and objects)
+                 will be taken care of some other time. :)
+r95 2012-10-28 - added section handling in the edit site screen.
+                 added the FocusableArea system - ability to have several
+                 focusable
+                 areas, menus or whatever on one screen.
+r94 2012-10-05 - added selection history tracking to the browse mode
+r93 2012-10-04 - slight makefile cleaning
+r92 2012-10-04 - nice parsing of lastmodified time stamps
+                 added sorting support in browse mode
+r91 2012-10-03 - restructure attempt 6
+r90 2012-10-03 - restructure of the source tree with new makefiles and stuff.
+                 (attempt 5)
+r89 2012-10-03 - restructure of the source tree with new makefiles and stuff.
+                 (attempt 4)
+r88 2012-10-03 - restructure of the source tree with new makefiles and stuff.
+                 (attempt 2)
+r87 2012-08-21 - elite browse mode!
+                 added hardcoded backspace match to fix terminals with broken
+                 KEY_BACKSPACE
+r86 2012-08-17 - fixed additional wall warnings.
+                 added a first draft of the browse mode - actually lists stuff,
+                 but very prototypish so far.
+                 added -Walling to the makefile
+r85 2012-08-17 - resolved various Wall warnings
+r84 2012-08-16 - removed the ticker thread from potentialtracker, using tickpoke
+                 instead
+r83 2012-08-14 - fixed the ftpthread status in the browsescreen, now counting
+                 idle time
+                 fixed proper disconnect after idling
+                 fixed reconnecting on a previously connected ftpthread
+r82 2012-08-14 - oops: forgot the makefile changes
+r81 2012-08-14 - the rawdatascreen now updates as soon as new data is available.
+                 fixed the event triggering in connstatetracker
+r80 2012-08-14 - on getFileList: don't cwd if we're already in the wanted dir
+r79 2012-08-13 - added support for idling connections, and picking them up when
+                 idling.
+                 removed the ticker tread from ftpthread, using tickpoke instead
+r78 2012-08-09 - added TickPoke facility, supposed to replace all ticker threads
+                 later on
+r77 2012-08-09 - cleaned up the output in rawbuf windows and added some useful
+                 connection info
+r76 2012-08-08 - added infrastructure to allow the ui to get stuff from
+                 sitethreads (which in turn gets stuff from ftpthreads)
+r75 2012-08-08 - fixed stupid file extension bug
+r74 2012-07-15 - updated makefile for new linking structure requirements and ssl
+                 library updates
+r73 2012-07-13 - cleaned up resize code
+r72 2012-07-13 - optimized ui drawing by not touching entire windows
+                 improved terminal resize code
+r71 2012-07-13 - fixed null dereference bug
+r70 2012-07-13 - implemented terminal resize awareness
+r69 2012-07-13 - bug: using int value instead of str(int) length to get the
+                 length of the parameter
+r68 2012-07-12 - new tasks in TODO
+r66 2012-07-09 - legendwindow wasn't initialized at the loadup of newkeyscreen
+r65 2012-07-02 - added a "legend" bar at the bottom.
+                 added relevant legend text in all windows
+                 made sure cursor stays in the wanted position
+r64 2012-06-26 - implemented AES encryption for the data file.
+                 added a new key screen for creating a new data file
+r63 2012-06-26 - fixed: wrong tag for the address field
+r62 2012-06-21 - cleaned up import code layout
+r61 2012-06-12 - complete ui architecture rewrite. Now really easily modifiable
+                 and usable
+r60 2011-12-31 - initial code for log windows added. ui refactoring started
+r59 2011-08-02 - first implementation of rawbuffer
+r58 2011-07-21 - added checkbox options
+r57 2011-07-20 - transitioned to vector based control for
+                 sitemanager/sitethreadmanager
+r56 2011-07-13 - initial test version of option menu system
+r55 2011-07-04 - remade welcome screen, first draft
+r54 2011-07-01 - updated login screen
+r53 2011-06-30 - window top-refreshing works\!
+r52 2011-06-30 - fixed off-by-one segfaults in site menu
+r51 2011-06-30 - site menu system added
+r50 2011-06-20 - initial main screen ui code
+r49 2011-06-07 - proper string input catching
+r48 2011-06-03 - initial ncurses stuff added
+r27 2011-04-29 - corrected points calculation for site progess
+r26 2011-04-29 - spred mode enhanced, max uploaded files count tracked
+r20 2011-04-01 - added the potentiality subsystem
+r5 2011-03-17 - repository baseline
